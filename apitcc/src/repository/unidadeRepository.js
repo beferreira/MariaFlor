@@ -5,11 +5,15 @@ export async function inserirUnidade(unidade) {
     insert into tb_unidade (foto,endereco,abre,fecha,url_maps)
     values (?,?,?,?,?);
     `
-    let info = await con.query(comando, [unidade.foto, unidade.endereco, unidade.abre, unidade.fecha, unidade.url_maps])
+    let info = await con.query(comando, [unidade.foto,unidade.endereco, unidade.abre, unidade.fecha, unidade.url_maps])
     
     let respostas = info[0]
+    console.log(respostas);
+    
     
     return respostas.insertId
+
+    //teste para suvbir
 }
 
 export async function consultarUnidade() {
