@@ -96,9 +96,9 @@ function Contato() {
 
         <div className='politica'>
           <div className='escrita'>
-            <p>Ao clicar em "Enviar", você declare que leu e está de acordo com a </p>
+            <p>Ao clicar em "Enviar", você declare que leu e está de acordo com a
             <a href="" onClick={handleDownload}> Política de Privacidade </a>
-            <p>da Front Company.</p>
+            da Front Company.</p>
           </div>
         </div>
 

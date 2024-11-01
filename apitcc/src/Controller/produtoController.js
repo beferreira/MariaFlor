@@ -30,7 +30,7 @@ endpoints.post('/produto', upload.single('foto'), async (req, resp) => {
 
         let unidade = req.body;
 
-        if ([produto.nomeproduto || produto.categoria || produto.descricao || produto.zeroacucar || produto.diet || produto.precoKg ]) {
+        if ([produto.foto || produto.nomeproduto || produto.categoria || produto.descricao || produto.zeroacucar || produto.diet || produto.precoKg ]) {
             return resp.status(400).send({ erro: 'Todos os campos devem ser preenchidos' });
         }
 
@@ -45,7 +45,7 @@ endpoints.post('/produto', upload.single('foto'), async (req, resp) => {
     }
 });
 
-endpoints.post('/produto/', autenticar, async (req, resp) =>{
+endpoints.post('/produto/', async (req, resp) =>{
     try{
         let produto = req.body
         let id = await inserirProdutoService(produto)
@@ -73,7 +73,7 @@ endpoints.post('/produto/', autenticar, async (req, resp) =>{
 
 
 
-endpoints.get('/produto', autenticar, async (req, resp) =>{
+endpoints.get('/produto', async (req, resp) =>{
     try{
         let produto = await consultarProdutoService();
         resp.send(produto);
@@ -86,10 +86,20 @@ endpoints.get('/produto', autenticar, async (req, resp) =>{
 })
 
 
+endpoints.get("/produto-filtro/:filtro",  async (req, resp) => {
+    try {
+      let filtro= req.params.filtro
+      let produto = await consultarProdutoFiltroService(filtro);
+      resp.send(produto);
+    } catch (err) {
+      resp.status(400).send({
+        erro: err.message,
+      });
+    }
+  });
 
 
-
-endpoints.put('/produto/:id', autenticar, async (req, resp)=> {
+endpoints.put('/produto/:id', async (req, resp)=> {
     try{
         let idProduto = req.params.id;
         let produto = req.body;
@@ -110,7 +120,7 @@ endpoints.put('/produto/:id', autenticar, async (req, resp)=> {
 
 
 
-endpoints.delete('/produto/:id', autenticar, async (req, resp) => {
+endpoints.delete('/produto/:id', async (req, resp) => {
     try{
         let id = req.params.id;
         await deletarProdutoService(id);

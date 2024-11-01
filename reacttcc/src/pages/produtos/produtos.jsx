@@ -7,108 +7,55 @@ import {useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const produtos = [
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-]
 
 function Produtos() {
-  const [produtoSelecionado, setProdutoSelecionado] = useState(null)
-
-  function abrir(id, titulo, descricao, valor, img) {
-    setProdutoSelecionado({id, titulo, descricao, valor , img})
-  }
-
-  const [token, setToken] = useState(null);
-  const navigate = useNavigate();
-
-  const [id, setId] = useState('')
+  const [listaProdutos, setProdutos] = useState([]); 
+  const [ordenar, setOrdernar] = useState('todas');
+  const [Filtrados, setFiltrados] = useState([]);
 
   useEffect(() => {
-    let usuario = localStorage.getItem('Login')
-    setToken(usuario)
+    const cardsProduto = async () => {
+  
+      const url = `http://localhost:7000/produto-filtro/${ordenar}`;
+      const response = await axios.get(url);
+      setFiltrados(response.data);};
+      
+      const intervalId = setInterval(cardsProduto, 10); 
+      return () => clearInterval(intervalId); 
+    }, [ordenar]);
 
-    if (usuario == undefined) {
-        navigate('/')
-    }
-}, [])
+  const [id, setId] = useState('')
+  const [produtoSelecionado, setProdutoSelecionado] = useState(null)
+  
+  function abrir(id, foto, nomeproduto, descricao, precoKg) {
+    setProdutoSelecionado({id, foto, nomeproduto, descricao, precoKg})
+  }
+
+  // const [token, setToken] = useState(null);
+  // const navigate = useNavigate();
+  
+  
+//   useEffect(() => {
+//     let usuario = localStorage.getItem('Login')
+//     setToken(usuario)
+    
+//     if (usuario == undefined) {
+//       navigate('/')
+//     }
+// }, [])
 
   async function Excluir() {
-    const url = `http://localhost:5020/produto/${id}?x-access-token=${token}`;
+    const url = `http://localhost:7000/produto/${id}`;
     let resp = await axios.delete(url);
-    alert(`Id: ${id} deletado da lista de anotações.`);
+    alert(`Id: ${id} deletado da lista de produtos.`);
+    
+  }
 
-}
+  async function filtrar(){
 
+    
+  } 
+  
   return (
     <div className="produtos">
       <header className="principal">
@@ -140,10 +87,10 @@ function Produtos() {
 
       {produtoSelecionado && <PaginaProduto
           id={produtoSelecionado.id}
-          titulo={produtoSelecionado.titulo}
+          nomeproduto={produtoSelecionado.nomeproduto}
           descricao={produtoSelecionado.descricao}
-          img={produtoSelecionado.img}
-          valor={produtoSelecionado.valor}
+          foto={produtoSelecionado.foto}
+          precoKg={produtoSelecionado.precoKg}
         />}
 
         <div className='cards'>
@@ -151,12 +98,13 @@ function Produtos() {
             <a href="/addproduto"> <img src="./images/add.png" alt="" width={90} /> <h2>Adicionar Produto</h2></a>
           </div>
 
-          {produtos.map(p => <CardProduto
+          {listaProdutos.map(p => <CardProduto
+            key={p.id_produto}
             id={p.id}
-            titulo={p.titulo}
+            foto={p.foto}
+            nomeproduto={p.nomeproduto}
             descricao={p.descricao}
-            img={p.img}
-            valor={p.valor}
+            precoKg={p.precoKg}
             abrir={abrir} />)}
         </div>
 

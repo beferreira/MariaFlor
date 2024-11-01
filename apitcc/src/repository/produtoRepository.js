@@ -2,10 +2,10 @@ import con from './connection.js'
 
 export async function inserirProduto(produto) {
     const comando = `
-    insert into tb_produtos(nomeproduto, categoria, descricao, zeroAcucar, diet, precoKg)
-	values (?, ?, ?, ?, ?, ?);
+    insert into tb_produtos(foto, nomeproduto, categoria, descricao, zeroAcucar, diet, precoKg)
+	values (?, ?, ?, ?, ?, ?, ?);
    `
-   let resposta = await con.query(comando, [produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroacucar, produto.diet, produto.precoKg ]);
+   let resposta = await con.query(comando, [produto.foto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroacucar, produto.diet, produto.precoKg ]);
 
    let info = resposta[0]
    let id = info.insertId
@@ -16,7 +16,8 @@ export async function inserirProduto(produto) {
 export async function consultarProduto(){
     const comando = `
     
-    select id_produto, 
+    select id_produto,
+    foto                  foto,
     nomeproduto           nomeproduto,
     categoria             categoria,
     descricao             descricao, 
@@ -33,22 +34,11 @@ export async function consultarProduto(){
     return resposta
 }
 
-export async function consultarUnidadesFiltro(filtro) {
-    const comando = `
-    
-    select *
-    from tb_unidade
-    where status = ?;
-    `
-    let info = await con.query(comando, [filtro])
-    let respostas = info[0]
-    return respostas
-}
-
 export async function alterarProduto(produto, idProduto) {
    const comando = `
     update tb_produtos
-    set nomeproduto = ?,
+    set foto = ?,
+        nomeproduto = ?,
         categoria = ?,
         descricao = ?,
         zeroacucar = ?,
@@ -57,7 +47,7 @@ export async function alterarProduto(produto, idProduto) {
     where id_produto = ?;
     ` 
 
-    let resposta = await con.query(comando, [produto.nomeproduto,produto.categoria, produto.descricao, produto.zeroacucar, produto.diet, produto.precoKg , idProduto])
+    let resposta = await con.query(comando, [produto.foto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroacucar, produto.diet, produto.precoKg, idProduto]);
 
     let info = resposta[0]
 
@@ -96,29 +86,33 @@ export async function filtrarProdutoOrdemAlfabetica(){
 }
 
 
-export async function filtrarProdutoPorId() {
+export async function filtrarProdutoPorId(id) {
     const comando = `
     select id_produto
     from tb_produtos
+    where id_produto = ?
     order by id_produto asc;
     `
-    let info = await con.query(comando)
+    let info = await con.query(comando, [id]);
+    
     let resposta = info[0]
 
     return resposta
 }
 
-export async function filtrarProdutoDoces() {
+export async function filtrarProdutoCategoria(categoria) {
     const comando = `
     select *
     from tb_produtos
-    where categoria = 'doces'
+    where categoria = ?
     order by nomeproduto asc;
     `
-    let info = await con.query(comando)
+    let info = await con.query(comando, [categoria]);
+
     let resposta = info[0]
 
-    return resposta
+    return resposta;
+
 }
 
 export async function filtrarProdutoSalgados() {

@@ -7,23 +7,21 @@ import Aviso from '../../components/aviso/aviso.jsx';
 import { useNavigate } from 'react-router-dom';
 
 function AddProduto() {
+  
+  const navigate = useNavigate();
 
-  const [img, setImg] = useState('');
   const [nomeproduto, setNomeProduto] = useState('');
   const [descricao, setDescricao] = useState('');
   const [zeroacucar, setZeroacucar] = useState(false);
   const [diet, setDiet] = useState(false);
   const [categoria, setCategoria] = useState('');
   const [precoKg, setPrecoKg] = useState(0);
-  const inputFileRef = useRef(null);
-  const pictureImageRef = useRef(null);
-  const pictureImageTxt = "Buscar imagem no dispositivo";
-  
-  const navigate = useNavigate();
 
   const [mensagemAviso, setmensagemAviso] = useState('');
   const [AvisoTipo, setAvisoTipo] = useState('');
-  
+  const inputFileRef = useRef(null);
+  const pictureImageRef = useRef(null);
+  const pictureImageTxt = "Buscar imagem no dispositivo";
 
   const FecharAviso = () => {
     setmensagemAviso('');
@@ -92,7 +90,6 @@ function AddProduto() {
     };
   }, []);
 
-
   return (
     <div className="add-prod">
         <Aviso
@@ -112,7 +109,7 @@ function AddProduto() {
         </div>
 
         <div className="adicionar">
-          <div className='imagem'>
+        <div className='imagem'>
             <label className="picture" htmlFor="picture__input" tabIndex="0">
               <span className="picture__image" ref={pictureImageRef}></span>
             </label>
