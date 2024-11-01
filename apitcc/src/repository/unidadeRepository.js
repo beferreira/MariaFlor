@@ -19,7 +19,7 @@ export async function inserirUnidade(unidade) {
 export async function consultarUnidade() {
     const comando = `
         
-    select*from tb_unidade;    
+    select * from tb_unidade;    
     `
     let info = await con.query(comando)
     let resposta = info[0]

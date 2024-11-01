@@ -22,27 +22,18 @@ import multer from 'multer';
 
 const upload = multer({ dest: 'uploads/' }); 
 
-endpoints.post('/produto', upload.single('foto'), async (req, resp) => {
-    try {
-        if (!req.file) {
-            return resp.status(400).send({ erro: 'Arquivo de imagem não enviado' });
-        }
-
-        let unidade = req.body;
-
-        if ([produto.foto || produto.nomeproduto || produto.categoria || produto.descricao || produto.zeroacucar || produto.diet || produto.precoKg ]) {
-            return resp.status(400).send({ erro: 'Todos os campos devem ser preenchidos' });
-        }
-
-        unidade.foto = req.file.path; 
-        let id = await  inseriProdutoService(produto);  
-        resp.send({ novoId: id });
-    } catch (err) {
-        console.error(err);  
-        resp.status(400).send({
-            erro: err.message
-        });
+endpoints.post('/produto', async (req, resp) => {
+    let produto = {
+        foto: req.body.foto,
+        nomeproduto: req.body,
+        categoria: req.body.categoria,
+        descricao: req.body.descricao,
+        zaroacucar: req.body.zaroacucar,
+        diet: req.body.diet,
+        precoKg: req.body.precoKg,
     }
+    let id = await inseriUnidadeService(unidade)
+    resp.send("foi"+id)
 });
 
 endpoints.post('/produto/', async (req, resp) =>{

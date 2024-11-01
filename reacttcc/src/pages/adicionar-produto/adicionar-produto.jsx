@@ -19,38 +19,32 @@ function AddProduto() {
 
   const [mensagemAviso, setmensagemAviso] = useState('');
   const [AvisoTipo, setAvisoTipo] = useState('');
-  const inputFileRef = useRef(null);
-  const pictureImageRef = useRef(null);
-  const pictureImageTxt = "Buscar imagem no dispositivo";
+  const [foto, setFoto] = useState();
+
+  // const inputFileRef = useRef(null);
+  // const pictureImageRef = useRef(null);
+  // const pictureImageTxt = "Buscar imagem no dispositivo";
 
   const FecharAviso = () => {
     setmensagemAviso('');
   };
 
   async function salvar() {
-    if (!inputFileRef.current || !inputFileRef.current.files.length) {
-      setmensagemAviso('Por favor, selecione uma imagem.');
-      setAvisoTipo('error');
-      return; 
-    }
     
-    const formData = new FormData();
-    formData.append('foto', inputFileRef.current.files[0]);
-    formData.append('nomproduto', nomeproduto);
-    formData.append('descricao', descricao);
-    formData.append('zeroacucar', zeroacucar);
-    formData.append('diet', diet);
-    formData.append('categoria', categoria);
-    formData.append('precoKg', precoKg);
+    const formData = {
+      'foto': foto,
+      'nomeproduto': nomeproduto,
+      'descricao': descricao,
+      'zeroacucar': zeroacucar,
+      'diet': diet,
+      'categoria': categoria,
+      'precoKg': precoKg
+    }
 
     const url = 'http://localhost:7000/produto';
 
     try {
-      await axios.post(url, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
+      await axios.post(url, formData);
       
       setmensagemAviso('Produto adicionado com sucesso!');
       setAvisoTipo('success');
@@ -61,34 +55,19 @@ function AddProduto() {
     }
   }
 
-  useEffect(() => {
-    pictureImageRef.current.innerHTML = pictureImageTxt;
+  
+  function alterarImagem(e) {
+    const file = e.target.files[0];
 
-    const handleFileChange = (e) => {
-      const file = e.target.files[0];
-      if (file) {
+    if (file) {
         const reader = new FileReader();
-        reader.onload = (event) => {
-          const imgElement = document.createElement("img");
-          imgElement.src = event.target.result;
-          imgElement.classList.add("picture__img");
-
-          pictureImageRef.current.innerHTML = "";
-          pictureImageRef.current.appendChild(imgElement);
+        reader.onloadend = () => {
+            setFoto(reader.result);
         };
+
         reader.readAsDataURL(file);
-      } else {
-        pictureImageRef.current.innerHTML = pictureImageTxt;
-      }
-    };
-
-    const inputFile = inputFileRef.current;
-    inputFile.addEventListener("change", handleFileChange);
-
-    return () => {
-      inputFile.removeEventListener("change", handleFileChange);
-    };
-  }, []);
+    }
+ }
 
   return (
     <div className="add-prod">
@@ -111,12 +90,12 @@ function AddProduto() {
         <div className="adicionar">
         <div className='imagem'>
             <label className="picture" htmlFor="picture__input" tabIndex="0">
-              <span className="picture__image" ref={pictureImageRef}></span>
+              {/* <span className="picture__image" ref={pictureImageRef}></span> */}
             </label>
             <input
-              id="picture__input"  
+             
               type="file"
-              ref={inputFileRef}  
+              onChange={alterarImagem}
               style={{ display: 'none' }}
               accept="image/*"  
             />

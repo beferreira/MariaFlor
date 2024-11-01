@@ -51,10 +51,7 @@ function Produtos() {
     
   }
 
-  async function filtrar(){
-
-    
-  } 
+  async function filtrar(){} 
   
   return (
     <div className="produtos">

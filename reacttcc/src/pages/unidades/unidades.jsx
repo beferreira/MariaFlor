@@ -4,8 +4,7 @@ import Rodape from '../../components/rodape/rodape.jsx';
 import CardUnidade from '../../components/card-unidade/cardUnidade.jsx';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-
-
+import {Buffer} from "buffer"
 
 
 function Unidades() {
@@ -17,10 +16,12 @@ function Unidades() {
       
       const url = 'http://localhost:7000/unidade';
       const response = await axios.get(url);
-      setListaUnidade(response.data);};
+      console.log(response.data);
+      setListaUnidade(response.data);
+    };
 
-    const intervalId = setInterval(cardsUnidades, 10); 
-    return () => clearInterval(intervalId); 
+    cardsUnidades();
+    
   }, []);
 
 

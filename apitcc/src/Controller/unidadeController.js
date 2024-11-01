@@ -16,16 +16,16 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 
 
-endpoints.post('/unidade', upload.single('foto'), async (req, resp) =>{
+endpoints.post('/unidade',  async (req, resp) =>{
 
         let unidade = {
-            foto: req.file.buffer,
+            foto: req.body.foto,
             endereco: req.body.endereco,
             abre: req.body.abre,
             fecha: req.body.fecha,
             url_maps: req.body.url_maps,
         }
-        let id = await inseriUnidadeService(unidade)
+        let id = await inserirUnidadeService(unidade)
         resp.send("foi"+id)
 
         //teste para subrr

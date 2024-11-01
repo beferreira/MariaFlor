@@ -1,7 +1,7 @@
 import { inserirUnidade } from "../../repository/unidadeRepository.js";
 import { validarCamposObrigatoriosUnidade } from "../../validation/unidade/unidadeValidation.js";
 
-export default async function inseriUnidadeService(unidade){
+export default async function inserirUnidadeService(unidade){
 
     validarCamposObrigatoriosUnidade(unidade)
 
