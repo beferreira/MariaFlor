@@ -15,28 +15,21 @@ import multer from 'multer';
 
 const upload = multer({ dest: 'uploads/' }); 
 
-endpoints.post('/unidade', upload.single('foto'), async (req, resp) => {
-    try {
-        if (!req.file) {
-            return resp.status(400).send({ erro: 'Arquivo de imagem não enviado' });
+endpoints.post('/unidade', upload.single('foto'), async (req, resp) =>{
+
+        let unidade = {
+            foto: req.file.buffer,
+            endereco: req.body.endereco,
+            abre: req.body.abre,
+            fecha: req.body.fecha,
+            url_maps: req.body.url_maps,
         }
+        let id = await inseriUnidadeService(unidade)
+        resp.send("foi"+id)
 
-        let unidade = req.body;
-
-        if (!unidade.endereco || !unidade.abre || !unidade.fecha || !unidade.url_maps) {
-            return resp.status(400).send({ erro: 'Todos os campos devem ser preenchidos' });
-        }
-
-        unidade.foto = req.file.path; 
-        let id = await  inseriUnidadeService(unidade);  
-        resp.send({ novoId: id });
-    } catch (err) {
-        console.error(err);  
-        resp.status(400).send({
-            erro: err.message
-        });
-    }
+        //teste para subrr
 });
+
 
 
 endpoints.get('/unidade', async (req, resp) =>{
