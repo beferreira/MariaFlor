@@ -24,7 +24,7 @@ function AddEncomenda() {
       "status": "Pendente"
     }
 
-    const url = 'http://localhost:7000/encomendas';
+    const url = 'http://localhost:5025/encomendas';
     let resp = await axios.post(url, paramCorpo);
     console.log(resp)
     setmensagemAviso('Encomenda adicionada com sucesso!')

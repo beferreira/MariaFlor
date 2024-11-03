@@ -41,7 +41,7 @@ function AddProduto() {
       'precoKg': precoKg
     }
 
-    const url = 'http://localhost:7000/produto';
+    const url = 'http://localhost:5025/produto';
 
     try {
       await axios.post(url, formData);

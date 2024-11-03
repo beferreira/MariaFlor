@@ -16,7 +16,7 @@ function Produtos() {
   useEffect(() => {
     const cardsProduto = async () => {
   
-      const url = `http://localhost:7000/produto-filtro/${ordenar}`;
+      const url = `http://localhost:5025/produto-filtro/${ordenar}`;
       const response = await axios.get(url);
       setFiltrados(response.data);};
       

@@ -14,7 +14,7 @@ function Unidades() {
   useEffect(() => {
     const cardsUnidades = async () => {
       
-      const url = 'http://localhost:7000/unidade';
+      const url = 'http://localhost:5025/unidade';
       const response = await axios.get(url);
       console.log(response.data);
       setListaUnidade(response.data);
