@@ -100,7 +100,7 @@ export async function filtrarProdutoPorId(id) {
     return resposta
 }
 
-export async function filtrarProdutoCategoria(categoria) {
+export async function filtrarProdutoDoce() {
     const comando = `
     select *
     from tb_produtos

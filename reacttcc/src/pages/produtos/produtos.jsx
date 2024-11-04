@@ -1,28 +1,28 @@
-import './produtos.scss';
+  import './produtos.scss';
 import Cabecalho from '../../components/cabecalho/cabecalho.jsx';
 import Rodape from '../../components/rodape/rodape.jsx';
 import CardProduto from '../../components/card-produto/cardProduto.jsx';
 import PaginaProduto from '../../components/pagina-produto/paginaProduto.jsx';
-import {useNavigate } from 'react-router-dom';
+//import {useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
 function Produtos() {
-  const [listaProdutos, setProdutos] = useState([]); 
-  const [ordenar, setOrdernar] = useState('todas');
-  const [Filtrados, setFiltrados] = useState([]);
+   const [listaProdutos, setProdutos] = useState([]); 
+  // const [ordenar, setOrdernar] = useState('todas');
+  // const [Filtrados, setFiltrados] = useState([]);
 
-  useEffect(() => {
-    const cardsProduto = async () => {
+  // useEffect(() => {
+  //   const cardsProduto = async () => {
   
-      const url = `http://localhost:5025/produto-filtro/${ordenar}`;
-      const response = await axios.get(url);
-      setFiltrados(response.data);};
+  //     const url = `http://localhost:5025/produto-filtro/${ordenar}`;
+  //     const response = await axios.get(url);
+  //     setFiltrados(response.data);};
       
-      const intervalId = setInterval(cardsProduto, 10); 
-      return () => clearInterval(intervalId); 
-    }, [ordenar]);
+  //     const intervalId = setInterval(cardsProduto, 10); 
+  //     return () => clearInterval(intervalId); 
+  //   }, [ordenar]);
 
   const [id, setId] = useState('')
   const [produtoSelecionado, setProdutoSelecionado] = useState(null)
@@ -45,7 +45,7 @@ function Produtos() {
 // }, [])
 
   async function Excluir() {
-    const url = `http://localhost:7000/produto/${id}`;
+    const url = `http://localhost:5025/produto/${id}`;
     let resp = await axios.delete(url);
     alert(`Id: ${id} deletado da lista de produtos.`);
     
