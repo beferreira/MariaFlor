@@ -8,7 +8,7 @@ function CardUnidade({foto,endereco,abre,fecha,url, id}) {
 
   async function apagar(){
       
-      const url = `http://localhost:7000/unidade/${id}`;
+      const url = `http://localhost:5025/unidade/${id}`;
       const response = await axios.delete(url);
   };
 
