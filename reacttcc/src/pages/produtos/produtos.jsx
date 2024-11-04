@@ -43,7 +43,7 @@ function Produtos() {
   }
 
   async function Excluir() {
-    const url = `http://localhost:7000/produto/${id}`;
+    const url = `http://localhost:5025/produto/${id}`;
     let resp = await axios.delete(url);
     alert(`Id: ${id} deletado da lista de produtos.`);
   }
