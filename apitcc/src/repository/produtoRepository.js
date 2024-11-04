@@ -88,10 +88,8 @@ export async function filtrarProdutoOrdemAlfabetica(){
 
 export async function filtrarProdutoPorId(id) {
     const comando = `
-    select id_produto
-    from tb_produtos
-    where id_produto = ?
-    order by id_produto asc;
+    SELECT id_produto
+    FROM tb_produtos
     `
     let info = await con.query(comando, [id]);
     
@@ -100,11 +98,11 @@ export async function filtrarProdutoPorId(id) {
     return resposta
 }
 
-export async function filtrarProdutoCategoria(categoria) {
+export async function filtrarProdutoDoce(categoria) {
     const comando = `
     select *
     from tb_produtos
-    where categoria = ?
+    where categoria = 'doces'
     order by nomeproduto asc;
     `
     let info = await con.query(comando, [categoria]);

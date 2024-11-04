@@ -77,17 +77,22 @@ endpoints.get('/produto', async (req, resp) =>{
 })
 
 
-endpoints.get("/produto-filtro/:filtro",  async (req, resp) => {
-    try {
-      let filtro= req.params.filtro
-      let produto = await consultarProdutoFiltroService(filtro);
-      resp.send(produto);
-    } catch (err) {
-      resp.status(400).send({
-        erro: err.message,
-      });
-    }
-  });
+
+
+// ENDPOINTS COM PROBLEMA NA SERVICE PQ Ñ EXISTE
+
+// endpoints.get("/produto-filtro/:filtro",  async (req, resp) => {
+//     try {
+//       let filtro= req.params.filtro
+//       let produto = await consultarProdutoFiltroService(filtro);
+//       resp.send(produto);
+//     } catch (err) {
+//       resp.status(400).send({
+//         erro: err.message,
+//       });
+//     }
+//   });
+
 
 
 endpoints.put('/produto/:id', async (req, resp)=> {
