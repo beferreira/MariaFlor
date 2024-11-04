@@ -4,7 +4,7 @@ import Rodape from '../../components/rodape/rodape.jsx';
 import CardProduto from '../../components/card-produto/cardProduto.jsx';
 import PaginaProduto from '../../components/pagina-produto/paginaProduto.jsx';
 import { useState } from 'react';
-import con from '../../../../apitcc/src/repository/connection.js';
+
 
 import axios from 'axios';
 
@@ -27,12 +27,51 @@ function Inicio() {
     setListaFiltros(resp.data)
   }
 
+  async function filtrarOrdemAlfabetica(){
+    const url  = `http//localhost:5025/produto/ordemAlfabetica`
+    let resp = await axios.get(url)
+
+    setListaFiltros(resp.data)
+
+  }
+
+  async function filtrarId(){
+    const url = `http//localhost:5025/produto/id`
+    let resp  = await axios.get(url)
+
+    setListaFiltros(resp.data)
+
+  } 
+
   async function filtrarDoces(){
 
     const url = `http//localhost:5025/produto/doce`;
     let resp = await axios.get(url);
 
     setListaFiltros(resp.data)
+  }
+
+  async function filtrarSalgados(){
+
+    const url = `http//localhost:5025/produto/salgado`
+    let resp = await axios.get(url)
+
+    setListaFiltros(resp.data)
+  }
+
+  async function filtrarDiet(){
+    const url = `http//localhost:5025/produto/diet`
+    let resp = await axios.get(url)
+
+    setListaFiltros(resp.data)
+  }
+
+  async function filtrarZeroAcucar(){
+    const url = `http//localhost:5025/produto/zeroAcucar`
+    let resp = await axios.get(url)
+
+    setListaFiltros(resp.data)
+
   }
 
 
@@ -58,11 +97,11 @@ function Inicio() {
           <select name="ordenar">
             <option value="todas" onClick={filtrarTodasCategoria}>Todas as categorias</option>
             <option value="doces" onClick={filtrarDoces}>Doces</option>
-            <option value="salgados">Salgados</option>
-            <option value="zeroacucar">Zero Açucar</option>
-            <option value="diet">Diet</option>
-            <option value="ordemalfabetica">Ordem Alfabética A-Z</option>
-            <option value="ordemid">Número do ID</option>
+            <option value="salgados" onClick={filtrarSalgados}>Salgados</option>
+            <option value="zeroacucar" onClick={filtrarZeroAcucar}>Zero Açucar</option>
+            <option value="diet" onClick={filtrarDiet}>Diet</option>
+            <option value="ordemalfabetica" onClick={filtrarOrdemAlfabetica}>Ordem Alfabética A-Z</option>
+            <option value="ordemid" onClick={filtrarId}>Número do ID</option>
           </select>
         </div>
 

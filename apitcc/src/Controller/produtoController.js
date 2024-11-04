@@ -156,7 +156,7 @@ endpoints.get('/produto/ordemAlfabetica', autenticar, async (req, resp) =>{
 })
 
 // ESTOUY EM DUVIDA MANO NESSA AQUI 
-endpoints.get('/produto/:id', autenticar, async (req, resp) =>{
+endpoints.get('/produto/id', autenticar, async (req, resp) =>{
     try{
         let id = req.params.id
 
