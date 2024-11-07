@@ -5,82 +5,10 @@ import CardProduto from '../../components/card-produto/cardProduto.jsx';
 import PaginaProduto from '../../components/pagina-produto/paginaProduto.jsx';
 import { useState } from 'react';
 
-const produtos = [
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-
-  {
-    "id": 3,
-    "titulo": "Delícia de Chocolate",
-    "descricao": "Conheça a Delícia de Chocolate: um bolo irresistível que combina camadas fofinhas de chocolate com um recheio generoso de brigadeiro. Finalizado com raspas de chocolate, é a sobremesa perfeita para quem busca o sabor ultimate do prazer!",
-    "valor": "./images/delicia_chocolate.png",
-    "img": "124,90"
-  },
-]
 
 function Salgados() {
   const [produtoSelecionado, setProdutoSelecionado] = useState(null)
+  const [produtos, setProdutos] = useState([]);
 
   function abrir(id, titulo, descricao, valor, img) {
     setProdutoSelecionado({id, titulo, descricao, valor , img})

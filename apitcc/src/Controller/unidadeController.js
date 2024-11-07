@@ -25,7 +25,7 @@ endpoints.post('/unidade',  async (req, resp) =>{
             fecha: req.body.fecha,
             url_maps: req.body.url_maps,
         }
-        let id = await inserirUnidadeService(unidade)
+        let id = await inseriUnidadeService(unidade)
         resp.send("foi"+id)
 
         //teste para subrr

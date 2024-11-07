@@ -25,7 +25,7 @@ const upload = multer({ dest: 'uploads/' });
 endpoints.post('/produto', async (req, resp) => {
     let produto = {
         foto: req.body.foto,
-        nomeproduto: req.body,
+        nomeproduto: req.body.nomeproduto,
         categoria: req.body.categoria,
         descricao: req.body.descricao,
         zaroacucar: req.body.zaroacucar,
@@ -40,17 +40,10 @@ endpoints.post('/produto/', async (req, resp) =>{
     try{
         let produto = req.body
         let id = await inserirProdutoService(produto)
-
         
-        if (id == null){
-            resp.send({ erro: "Usuario ou senha incorreta"})
-        } else {
-            let token = gerarToken(id)
-            resp.send({
-                "token": token
-            })
-        }
-   
+        resp.send({
+            idProduto: id
+        });
         
     }
     catch(err){
