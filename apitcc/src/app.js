@@ -4,7 +4,7 @@ import cors from 'cors'
 import adicionarRotas from './rotas.js'
 
 const servidor = express();
-servidor.use(express.json());
+servidor.use(express.json({limit:"10mb"}));
 servidor.use(cors());
 const PORTA = process.env.PORTA;
 

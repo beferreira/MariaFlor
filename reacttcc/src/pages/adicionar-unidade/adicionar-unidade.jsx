@@ -17,9 +17,9 @@ function AddUnidade() {
   const [AvisoTipo, setAvisoTipo] = useState('');
   const [foto, setFoto] = useState();
 
-  // const inputFileRef = useRef(null);
-  // const pictureImageRef = useRef(null);
-  // const pictureImageTxt = "Buscar imagem no dispositivo";
+  const inputFileRef = useRef(null);
+  const pictureImageRef = useRef(null);
+  const pictureImageTxt = "Buscar imagem no dispositivo";
 
   const FecharAviso = () => {
     setmensagemAviso('');
@@ -117,15 +117,14 @@ function AddUnidade() {
         <div className="adicionar">
           <div className='imagem'>
             <label className="picture" htmlFor="picture__input" tabIndex="0">
-              {/* <span className="picture__image" ref={pictureImageRef}></span> */}
-              {/* <span> <img src={foto} /></span> */}
+              <span className="picture__image" ref={pictureImageRef}></span> 
             </label>
             <input
               id="picture__input"  
               type="file"
               onChange={alterarImagem}
               style={{ display: 'none' }}
-              accept="image/*"  
+              accept="images/*"  
             />
           </div>
 

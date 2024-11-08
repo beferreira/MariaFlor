@@ -2,7 +2,8 @@
 import alterarUnidadeService from "../service/unidade/alterarUnidadeService.js";
 import consultarUnidadeService from "../service/unidade/consultaUnidadeService.js";
 import deletarUnidadeService from "../service/unidade/deletarUnidadeService.js";
-import inseriUnidadeService from "../service/unidade/inserirUnidadeService.js";
+import inserirUnidadeService from "../service/unidade/inserirUnidadeService.js";
+
 import { autenticar } from "../utils/jwts.js";
 
 import { Router } from "express"
@@ -12,8 +13,6 @@ const endpoints = Router();
 import multer from 'multer';
 
 const upload = multer({ storage: multer.memoryStorage() }); 
-
-
 
 
 endpoints.post('/unidade',  async (req, resp) =>{
