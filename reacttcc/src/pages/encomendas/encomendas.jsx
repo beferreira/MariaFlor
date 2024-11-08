@@ -15,8 +15,7 @@ function Encomendas() {
 
   useEffect(() => {
     const cardsEncomendas = async () => {
-      
-      const url = 'http://localhost:7000/encomendas';
+      const url = 'http://localhost:5025/encomendas';
       const response = await axios.get(url);
       setListaEncomendas(response.data);};
 
@@ -26,8 +25,7 @@ function Encomendas() {
 
   useEffect(() => {
     const cardsEncomendas = async () => {
-      
-      const url = `http://localhost:7000/encomendas-filtro/${status}`;
+      const url = `http://localhost:5025/encomendas-filtro/${status}`;
       const response = await axios.get(url);
       setFiltrados(response.data);};
 

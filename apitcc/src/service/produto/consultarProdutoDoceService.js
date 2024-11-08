@@ -1,8 +1,9 @@
-//import { filtrarProdutoDoces } from "../../repository/produtoRepository.js";
+import { filtrarProdutoDoce } from "../../repository/produtoRepository.js";
 
 export default async function consultarProdutoDoceService() {
     
-    let registros = [] //await filtrarProdutoDoces()
+    let registros = await filtrarProdutoDoce()
     
-    return registros
+    return registros;
+    
 }

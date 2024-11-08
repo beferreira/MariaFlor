@@ -5,7 +5,7 @@ export async function inserirProduto(produto) {
     insert into tb_produtos(foto, nomeproduto, categoria, descricao, zeroAcucar, diet, precoKg)
 	values (?, ?, ?, ?, ?, ?, ?);
    `
-   let resposta = await con.query(comando, [produto.foto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroacucar, produto.diet, produto.precoKg ]);
+   let resposta = await con.query(comando, [produto.foto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroAcucar, produto.diet, produto.precoKg ]);
 
    let info = resposta[0]
    let id = info.insertId
@@ -47,7 +47,7 @@ export async function alterarProduto(produto, idProduto) {
     where id_produto = ?;
     ` 
 
-    let resposta = await con.query(comando, [produto.foto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroacucar, produto.diet, produto.precoKg, idProduto]);
+    let resposta = await con.query(comando, [produto.foto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroAcucar, produto.diet, produto.precoKg, idProduto]);
 
     let info = resposta[0]
 
@@ -88,10 +88,8 @@ export async function filtrarProdutoOrdemAlfabetica(){
 
 export async function filtrarProdutoPorId(id) {
     const comando = `
-    select id_produto
-    from tb_produtos
-    where id_produto = ?
-    order by id_produto asc;
+    SELECT id_produto
+    FROM tb_produtos
     `
     let info = await con.query(comando, [id]);
     
@@ -100,11 +98,11 @@ export async function filtrarProdutoPorId(id) {
     return resposta
 }
 
-export async function filtrarProdutoCategoria(categoria) {
+export async function filtrarProdutoDoce(categoria) {
     const comando = `
     select *
     from tb_produtos
-    where categoria = ?
+    where categoria = 'doces'
     order by nomeproduto asc;
     `
     let info = await con.query(comando, [categoria]);

@@ -22,17 +22,17 @@ import multer from 'multer';
 
 const upload = multer({ dest: 'uploads/' }); 
 
-endpoints.post('/produto', async (req, resp) => {
+endpoints.post('/produto/postarproduto', async (req, resp) => {
     let produto = {
         foto: req.body.foto,
-        nomeproduto: req.body,
+        nomeproduto: req.body.nomeproduto,
         categoria: req.body.categoria,
         descricao: req.body.descricao,
-        zaroacucar: req.body.zaroacucar,
+        zaroAcucar: req.body.zaroAcucar,
         diet: req.body.diet,
-        precoKg: req.body.precoKg,
+        precoKg: req.body.precoKg
     }
-    let id = await inseriUnidadeService(unidade)
+    let id = await inserirProdutoService(produto)
     resp.send("foi"+id)
 });
 
@@ -40,17 +40,10 @@ endpoints.post('/produto/', async (req, resp) =>{
     try{
         let produto = req.body
         let id = await inserirProdutoService(produto)
-
         
-        if (id == null){
-            resp.send({ erro: "Usuario ou senha incorreta"})
-        } else {
-            let token = gerarToken(id)
-            resp.send({
-                "token": token
-            })
-        }
-   
+        resp.send({
+            idProduto: id
+        });
         
     }
     catch(err){
@@ -77,17 +70,22 @@ endpoints.get('/produto', async (req, resp) =>{
 })
 
 
-endpoints.get("/produto-filtro/:filtro",  async (req, resp) => {
-    try {
-      let filtro= req.params.filtro
-      let produto = await consultarProdutoFiltroService(filtro);
-      resp.send(produto);
-    } catch (err) {
-      resp.status(400).send({
-        erro: err.message,
-      });
-    }
-  });
+
+
+// ENDPOINTS COM PROBLEMA NA SERVICE PQ Ñ EXISTE
+
+// endpoints.get("/produto-filtro/:filtro",  async (req, resp) => {
+//     try {
+//       let filtro= req.params.filtro
+//       let produto = await consultarProdutoFiltroService(filtro);
+//       resp.send(produto);
+//     } catch (err) {
+//       resp.status(400).send({
+//         erro: err.message,
+//       });
+//     }
+//   });
+
 
 
 endpoints.put('/produto/:id', async (req, resp)=> {
@@ -151,7 +149,7 @@ endpoints.get('/produto/ordemAlfabetica', autenticar, async (req, resp) =>{
 })
 
 // ESTOUY EM DUVIDA MANO NESSA AQUI 
-endpoints.get('/produto/:id', autenticar, async (req, resp) =>{
+endpoints.get('/produto/id', autenticar, async (req, resp) =>{
     try{
         let id = req.params.id
 
