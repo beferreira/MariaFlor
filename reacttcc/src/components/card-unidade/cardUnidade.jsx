@@ -2,15 +2,16 @@ import './cardUnidade.scss';
 import axios from 'axios'
 
 import {Buffer} from "buffer"
+import { useEffect } from 'react';
 
 
 function CardUnidade({foto,endereco,abre,fecha,url, id}) {
 
-  async function apagar(){
-      
+    async function apagar(){
+        
       const url = `http://localhost:5025/unidade/${id}`;
       const response = await axios.delete(url);
-  };
+    };
 
   return (
     <div className="card-unidade">

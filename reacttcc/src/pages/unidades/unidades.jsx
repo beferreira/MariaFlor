@@ -2,7 +2,7 @@ import './unidades.scss';
 import Cabecalho from '../../components/cabecalho/cabecalho.jsx';
 import Rodape from '../../components/rodape/rodape.jsx';
 import CardUnidade from '../../components/card-unidade/cardUnidade.jsx';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect} from 'react';
 import axios from 'axios';
 import {Buffer} from "buffer"
 
