@@ -22,17 +22,17 @@ import multer from 'multer';
 
 const upload = multer({ dest: 'uploads/' }); 
 
-endpoints.post('/produto', async (req, resp) => {
+endpoints.post('/produto/postarproduto', async (req, resp) => {
     let produto = {
         foto: req.body.foto,
         nomeproduto: req.body.nomeproduto,
         categoria: req.body.categoria,
         descricao: req.body.descricao,
-        zaroacucar: req.body.zaroacucar,
+        zaroAcucar: req.body.zaroAcucar,
         diet: req.body.diet,
-        precoKg: req.body.precoKg,
+        precoKg: req.body.precoKg
     }
-    let id = await inseriUnidadeService(unidade)
+    let id = await inserirProdutoService(produto)
     resp.send("foi"+id)
 });
 

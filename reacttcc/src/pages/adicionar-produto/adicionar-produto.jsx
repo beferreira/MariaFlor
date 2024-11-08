@@ -39,7 +39,7 @@ function AddProduto() {
       precoKg: precoKg,
     };
 
-    const url = "http://localhost:5025/produto";
+    const url = "http://localhost:5025/produto/postarproduto";
 
     try {
       await axios.post(url, formData);
@@ -85,17 +85,34 @@ function AddProduto() {
         </div>
 
         <div className="adicionar">
-          <div className="imagem">
-            <label className="picture" htmlFor="picture__input" tabIndex="0">
-              {/* <span className="picture__image" ref={pictureImageRef}></span> */}
+        
+           {/* <div className="imagem">
+            <label className="picture" htmlFor="input-imagem" tabIndex="0">
+              {pictureImageTxt}
             </label>
             <input
+              id="input-imagem"
               type="file"
               onChange={alterarImagem}
               style={{ display: "none" }}
               accept="image/*"
             />
-          </div>
+            </div>  */}
+
+              <div className="imagem">
+            <label className="picture" htmlFor="input-imagem" tabIndex="0">
+              {/* <span className="picture__image" ref={pictureImageRef}></span> */}
+              {foto ? <img src={foto} alt="Pré-visualização da imagem" /> : pictureImageTxt}
+             </label>
+            <input
+              id="input-imagem"
+              type="file"
+              onChange={alterarImagem}
+              style={{ display: "none", }}
+              accept="image/*"
+            />
+          </div>  
+
 
           <div className="interativo">
             <div className="inputs">

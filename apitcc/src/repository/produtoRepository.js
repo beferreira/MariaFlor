@@ -5,7 +5,7 @@ export async function inserirProduto(produto) {
     insert into tb_produtos(foto, nomeproduto, categoria, descricao, zeroAcucar, diet, precoKg)
 	values (?, ?, ?, ?, ?, ?, ?);
    `
-   let resposta = await con.query(comando, [produto.foto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroacucar, produto.diet, produto.precoKg ]);
+   let resposta = await con.query(comando, [produto.foto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroAcucar, produto.diet, produto.precoKg ]);
 
    let info = resposta[0]
    let id = info.insertId
@@ -47,7 +47,7 @@ export async function alterarProduto(produto, idProduto) {
     where id_produto = ?;
     ` 
 
-    let resposta = await con.query(comando, [produto.foto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroacucar, produto.diet, produto.precoKg, idProduto]);
+    let resposta = await con.query(comando, [produto.foto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroAcucar, produto.diet, produto.precoKg, idProduto]);
 
     let info = resposta[0]
 
