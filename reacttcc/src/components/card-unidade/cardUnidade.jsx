@@ -11,6 +11,7 @@ function CardUnidade({foto,endereco,abre,fecha,url, id}) {
         
       const url = `http://localhost:5025/unidade/${id}`;
       const response = await axios.delete(url);
+
     };
 
   return (
