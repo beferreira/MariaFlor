@@ -26,20 +26,25 @@ function Produtos() {
   const [id, setId] = useState("");
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
   const [listaFiltros, setListaFiltros] = useState([]);
-
+  
   function abrir(id, foto, nomeproduto, descricao, precoKg) {
     setProdutoSelecionado({ id, foto, nomeproduto, descricao, precoKg });
   }
-
   
-
-  async function filtrarTodasCategoria(){
-
-    const url = `http//localhost:5025/produto`;
-    let resp = await axios.get(url);
-    
-    setListaFiltros(resp.data)
+  async function Excluir() {
+    const url = `http://localhost:5025/produto/${id}`;
+    let resp = await axios.delete(url);
+    alert(`Id: ${id} deletado da lista de produtos.`);
   }
+  
+  
+  // async function filtrarTodasCategoria(){
+
+  //   const url = `http//localhost:5025/produto`;
+  //   let resp = await axios.get(url);
+    
+  //   setListaFiltros(resp.data)
+  // }
 
   async function filtrarOrdemAlfabetica(){
     const url  = `http//localhost:5025/produto/ordemAlfabetica`
@@ -85,16 +90,21 @@ function Produtos() {
     setListaFiltros(resp.data)
   }
 
+    const [ListaProduto, setListaProduto] = useState([])
+    
+    useEffect(() => {
+      const cardsProdutos = async () => {
+        
+        const url = 'http://localhost:5025/produto';
+        const response = await axios.get(url);
+        console.log(response.data);
+        setListaProduto(response.data);
+      };
+  
+      cardsProdutos();
+      
+    }, []);
 
-
-
-  async function Excluir() {
-    const url = `http://localhost:5025/produto/${id}`;
-    let resp = await axios.delete(url);
-    alert(`Id: ${id} deletado da lista de produtos.`);
-  }
-
-  async function filtrar() {}
 
   return (
     <div className="produtos">
@@ -122,7 +132,7 @@ function Produtos() {
           <p>Ordernar por</p>
 
           <select name="ordenar">
-            <option value="todas" onClick={filtrarTodasCategoria}>Todas as categorias</option>
+            <option value="todas" /*onClick={filtrarTodasCategoria}*/>Todas as categorias</option>
             <option value="doces" onClick={filtrarDoces}>Doces</option>
             <option value="salgados" onClick={filtrarSalgados}>Salgados</option>
             <option value="zeroacucar" onClick={filtrarZeroAcucar}>Zero Açucar</option>

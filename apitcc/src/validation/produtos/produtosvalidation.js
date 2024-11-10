@@ -13,11 +13,11 @@ export  function validarCamposObrigatoriosProdutos(produto){
         throw new Error('Descrição do produto obrigatório')
 
     }
-    if(isNaN(produto.zeroAcucar)){
+    if(isNaN(!produto.zeroAcucar)){
        throw new Error('produto (zeroAcucar) do campo inválido')
 
     }
-    if(isNaN(produto.diet)){
+    if(isNaN(!produto.diet)){
         throw new Error('produto (diet) do campo inválido')
     }
     if(!produto.precoKg){

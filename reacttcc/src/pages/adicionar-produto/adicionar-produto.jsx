@@ -32,15 +32,15 @@ function AddProduto() {
     const formData = {
       foto: foto,
       nomeproduto: nomeproduto,
+      categoria: categoria,
       descricao: descricao,
       zeroacucar: zeroacucar,
       diet: diet,
-      categoria: categoria,
-      precoKg: precoKg,
+      precoKg: precoKg
     };
-
-    const url = "http://localhost:5025/produto/postarproduto";
-
+    
+    const url = "http://localhost:5025/produto/";
+    
     try {
       await axios.post(url, formData);
 
@@ -129,6 +129,7 @@ function AddProduto() {
                 value={categoria}
                 onChange={(e) => setCategoria(e.target.value)}
               >
+                <option>Selecione a Categoria</option>
                 <option value="salgado">Salgado</option>
                 <option value="doce">Doce</option>
               </select>

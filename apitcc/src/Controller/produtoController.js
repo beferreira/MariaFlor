@@ -22,19 +22,19 @@ import multer from 'multer';
 
 const upload = multer({ dest: 'uploads/' }); 
 
-endpoints.post('/produto/postarproduto', async (req, resp) => {
-    let produto = {
-        foto: req.body.foto,
-        nomeproduto: req.body.nomeproduto,
-        categoria: req.body.categoria,
-        descricao: req.body.descricao,
-        zaroAcucar: req.body.zaroAcucar,
-        diet: req.body.diet,
-        precoKg: req.body.precoKg
-    }
-    let id = await inserirProdutoService(produto)
-    resp.send("foi"+id)
-});
+// endpoints.post('/produto/postarproduto', async (req, resp) => {
+//     let produto = {
+//         foto: req.body.foto,
+//         nomeproduto: req.body.nomeproduto,
+//         categoria: req.body.categoria,
+//         descricao: req.body.descricao,
+//         zaroAcucar: req.body.zaroAcucar,
+//         diet: req.body.diet,
+//         precoKg: req.body.precoKg
+//     }
+//     let id = await inserirProdutoService(produto)
+//     resp.send("foi"+id)
+// });
 
 endpoints.post('/produto/', async (req, resp) =>{
     try{
