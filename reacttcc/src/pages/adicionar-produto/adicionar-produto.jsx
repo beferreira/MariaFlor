@@ -14,7 +14,7 @@ function AddProduto() {
   const [zeroacucar, setZeroacucar] = useState(false);
   const [diet, setDiet] = useState(false);
   const [categoria, setCategoria] = useState("");
-  const [precoKg, setPrecoKg] = useState(0);
+  const [precoKg, setPrecoKg] = useState("");
 
   const [mensagemAviso, setmensagemAviso] = useState("");
   const [AvisoTipo, setAvisoTipo] = useState("");
