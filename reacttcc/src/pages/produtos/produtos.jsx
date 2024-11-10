@@ -37,12 +37,9 @@ function Produtos() {
     alert(`Id: ${id} deletado da lista de produtos.`);
   }
   
-  
   // async function filtrarTodasCategoria(){
-
   //   const url = `http//localhost:5025/produto`;
   //   let resp = await axios.get(url);
-    
   //   setListaFiltros(resp.data)
   // }
 

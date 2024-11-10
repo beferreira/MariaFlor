@@ -10,10 +10,41 @@ function Doces() {
 
   const [produtoSelecionado, setProdutoSelecionado] = useState(null)
   const [produtos, setProdutos] = useState([]);
+  const [listaFiltros, setListaFiltros] = useState([]);
 
   function abrir(id, titulo, descricao, valor, img) {
     setProdutoSelecionado({id, titulo, descricao, valor , img})
   }
+
+  async function filtrarOrdemAlfabetica(){
+    const url  = `http//localhost:5025/produto/ordemAlfabetica`
+    let resp = await axios.get(url)
+
+    setListaFiltros(resp.data)
+  }
+
+  async function filtrarId(){
+    const url = `http//localhost:5025/produto/id`
+    let resp  = await axios.get(url)
+
+    setListaFiltros(resp.data)
+  } 
+
+  async function filtrarDiet(){
+    const url = `http//localhost:5025/produto/diet`
+    let resp = await axios.get(url)
+
+    setListaFiltros(resp.data)
+  }
+
+  async function filtrarZeroAcucar(){
+    const url = `http//localhost:5025/produto/zeroAcucar`
+    let resp = await axios.get(url)
+
+    setListaFiltros(resp.data)
+  }
+
+
 
   return (
     <div className="doces">
@@ -31,10 +62,10 @@ function Doces() {
 
         <select name="ordenar">
           <option value="todas">Todas as categorias</option>
-          <option value="zeroacucar">Zero Açucar</option>
-          <option value="diet">Diet</option>
-          <option value="ordemalfabetica">Ordem Alfabética A-Z</option>
-          <option value="ordemid">ID</option>
+          <option value="ordemalfabetica" onClick={filtrarOrdemAlfabetica}>Ordem Alfabética A-Z</option>
+          <option value="ordemid" onClick={filtrarId}>ID</option>
+          <option value="zeroacucar" onClick={filtrarZeroAcucar}>Zero Açucar</option>
+          <option value="diet" onClick={filtrarDiet}>Diet</option>
         </select>
       </div>
 
