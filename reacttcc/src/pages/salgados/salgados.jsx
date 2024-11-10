@@ -4,7 +4,7 @@ import Rodape from '../../components/rodape/rodape.jsx';
 import CardProduto from '../../components/card-produto/cardProduto.jsx';
 import PaginaProduto from '../../components/pagina-produto/paginaProduto.jsx';
 import { useState } from 'react';
-
+import axios from "axios";
 
 function Salgados() {
   const [produtoSelecionado, setProdutoSelecionado] = useState(null)

@@ -4,7 +4,7 @@ import Rodape from '../../components/rodape/rodape.jsx';
 import CardProduto from '../../components/card-produto/cardProduto.jsx';
 import { useState } from 'react';
 import PaginaProduto from '../../components/pagina-produto/paginaProduto.jsx';
-
+import axios from "axios";
 
 function Doces() {
 
