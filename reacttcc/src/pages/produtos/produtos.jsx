@@ -27,8 +27,8 @@ function Produtos() {
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
   const [listaFiltros, setListaFiltros] = useState([]);
   
-  function abrir(id, foto, nomeproduto, descricao, precoKg) {
-    setProdutoSelecionado({ id, foto, nomeproduto, descricao, precoKg });
+  function abrir(id_produto, foto, nomeproduto, descricao, precoKg) {
+    setProdutoSelecionado({ id_produto, foto, nomeproduto, descricao, precoKg });
   }
   
   async function Excluir() {
@@ -140,7 +140,7 @@ function Produtos() {
 
         {produtoSelecionado && (
           <PaginaProduto
-            id={produtoSelecionado.id}
+            id={produtoSelecionado.id_produto}
             nomeproduto={produtoSelecionado.nomeproduto}
             descricao={produtoSelecionado.descricao}
             foto={produtoSelecionado.foto}
@@ -160,7 +160,7 @@ function Produtos() {
           {listaProdutos.map((p) => (
             <CardProduto
               key={p.id_produto}
-              id={p.id}
+              id={p.id_produto}
               foto={p.foto}
               nomeproduto={p.nomeproduto}
               descricao={p.descricao}
