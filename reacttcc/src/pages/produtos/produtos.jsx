@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Produtos() {
-  const [listaProdutos, setProdutos] = useState([]);
+  const [listaProdutos, setListaProdutos] = useState([]);
   const [ordenar, setOrdernar] = useState("todas");
   const [Filtrados, setFiltrados] = useState([]);
 
@@ -87,7 +87,6 @@ function Produtos() {
     setListaFiltros(resp.data)
   }
 
-    const [ListaProduto, setListaProduto] = useState([])
     
     useEffect(() => {
       const cardsProdutos = async () => {
@@ -95,7 +94,7 @@ function Produtos() {
         const url = 'http://localhost:5025/produto';
         const response = await axios.get(url);
         console.log(response.data);
-        setListaProduto(response.data);
+        setListaProdutos(response.data);
       };
   
       cardsProdutos();

@@ -107,9 +107,9 @@ function AddProduto() {
             <input
               id="input-imagem"
               type="file"
-              onChange={alterarImagem}
-              style={{ display: "none", }}
               accept="image/*"
+              onChange={alterarImagem}
+              style={{ display: "none"}}
             />
           </div>  
 
