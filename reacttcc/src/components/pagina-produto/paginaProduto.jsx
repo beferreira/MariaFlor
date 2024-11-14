@@ -1,6 +1,6 @@
 import './paginaProduto.scss';
 
-function PaginaProduto({id, titulo, descricao, valor, img}) {
+function PaginaProduto({id, titulo, descricao, valor, foto}) {
   return (
     <div className="pagina-produto">
         <header>
@@ -8,7 +8,7 @@ function PaginaProduto({id, titulo, descricao, valor, img}) {
         </header>
 
         <div className='conteudo'>
-            <img src={img}/>
+            <img src={foto}/>
 
             <div className='resto'>
               <h1>{titulo}</h1>

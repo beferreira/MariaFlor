@@ -12,20 +12,21 @@ import axios from 'axios';
 function Inicio() {
   const [produtoSelecionado, setProdutoSelecionado] = useState(null)
   const [listaFiltros, setListaFiltros] = useState([]);
+  const [listaProdutos, setListaProdutos] = useState([]);
 
 
-  function abrir(id, titulo, descricao, valor, img) {
-    setProdutoSelecionado({id, titulo, descricao, valor , img})
+  function abrir(id_produto, foto, nomeproduto, descricao, precoKg) {
+    setProdutoSelecionado({ id_produto, foto, nomeproduto, descricao, precoKg });
   }
 
 
-  async function filtrarTodasCategoria(){
+  // async function filtrarTodasCategoria(){
 
-    const url = `http//localhost:5025/produto`;
-    let resp = await axios.get(url);
+  //   const url = `http//localhost:5025/produto`;
+  //   let resp = await axios.get(url);
     
-    setListaFiltros(resp.data)
-  }
+  //   setListaFiltros(resp.data)
+  // }
 
   async function filtrarOrdemAlfabetica(){
     const url  = `http//localhost:5025/produto/ordemAlfabetica`
@@ -74,8 +75,18 @@ function Inicio() {
 
   }
 
+  useEffect(() => {
+    const cardsProdutos = async () => {
+      
+      const url = 'http://localhost:5025/produto';
+      const response = await axios.get(url);
+      console.log(response.data);
+      setListaProdutos(response.data);
+    };
 
-
+    cardsProdutos();
+    
+  }, []);
 
   return (
     <div className="inicio">
@@ -91,11 +102,11 @@ function Inicio() {
 
         <h2 className='slogan'>"Maria Flor, o sabor está no amor"</h2>
 
-        <div className='faixa-dois'>
+        <div className="faixa-dois">
           <p>Ordernar por</p>
 
           <select name="ordenar">
-            <option value="todas" onClick={filtrarTodasCategoria}>Todas as categorias</option>
+            <option value="todas" /*onClick={filtrarTodasCategoria}*/>Todas as categorias</option>
             <option value="doces" onClick={filtrarDoces}>Doces</option>
             <option value="salgados" onClick={filtrarSalgados}>Salgados</option>
             <option value="zeroacucar" onClick={filtrarZeroAcucar}>Zero Açucar</option>
@@ -105,28 +116,37 @@ function Inicio() {
           </select>
         </div>
 
-        {produtoSelecionado && <PaginaProduto
-          id={produtoSelecionado.id}
-          titulo={produtoSelecionado.titulo}
-          descricao={produtoSelecionado.descricao}
-          img={produtoSelecionado.img}
-          valor={produtoSelecionado.valor}
-        />}
+        {produtoSelecionado && (
+          <PaginaProduto
+            id={produtoSelecionado.id_produto}
+            nomeproduto={produtoSelecionado.nomeproduto}
+            descricao={produtoSelecionado.descricao}
+            foto={produtoSelecionado.foto}
+            precoKg={produtoSelecionado.precoKg}
+          />
+        )}
 
-        <div className='cards'>
-          <div className='add-card'>
-            <a href="/addproduto"> <img src="./images/add.png" alt="" width={90} /> <h2>Adicionar Produto</h2></a>
+        <div className="cards">
+          <div className="add-card">
+            <a href="/addproduto">
+              {" "}
+              <img src="./images/add.png" alt="" width={90} />{" "}
+              <h2>Adicionar Produto</h2>
+            </a>
           </div>
 
-          {listaFiltros.map(p => <CardProduto
-            id={p.id}
-            titulo={p.titulo}
-            descricao={p.descricao}
-            img={p.img}
-            valor={p.valor}
-            abrir={abrir} />)}
+          {listaProdutos.map((p) => (
+            <CardProduto
+              key={p.id_produto}
+              id={p.id_produto}
+              foto={p.foto}
+              nomeproduto={p.nomeproduto}
+              descricao={p.descricao}
+              precoKg={p.precoKg}
+              abrir={abrir}
+            />
+          ))}
         </div>
-
       </div>
       <Rodape />
     </div>

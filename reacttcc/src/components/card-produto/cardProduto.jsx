@@ -13,7 +13,6 @@ function CardProduto({id,foto,nomeproduto,categoria,descricao,precoKg,abrir}) {
       </div>
       <div className="card-container">
         <h3 className="card-titulo"> {nomeproduto} </h3>
-        <p>R${precoKg}</p>
       </div>
     </div>
   );

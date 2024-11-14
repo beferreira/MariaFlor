@@ -18,8 +18,8 @@ function AddUnidade() {
   const [foto, setFoto] = useState();
 
   // const inputFileRef = useRef(null);
-  const pictureImageRef = useRef(null);
-  // const pictureImageTxt = "Buscar imagem no dispositivo";
+  //const pictureImageRef = useRef(null);
+  const pictureImageTxt = "Buscar imagem no dispositivo";
 
   const FecharAviso = () => {
     setmensagemAviso('');
@@ -68,35 +68,6 @@ function AddUnidade() {
     }
  }
 
-  useEffect(() => {
-    // pictureImageRef.current.innerHTML = pictureImageTxt;
-
-    // const handleFileChange = (e) => {
-    //   const file = e.target.files[0];
-    //   if (file) {
-    //     const reader = new FileReader();
-    //     reader.onload = (event) => {
-    //       const imgElement = document.createElement("img");
-    //       imgElement.src = event.target.result;
-    //       imgElement.classList.add("picture__img");
-
-    //       pictureImageRef.current.innerHTML = "";
-    //       pictureImageRef.current.appendChild(imgElement);
-    //     };
-    //     reader.readAsDataURL(file);
-    //   } else {
-    //     pictureImageRef.current.innerHTML = pictureImageTxt;
-    //   }
-    // };
-
-    // const inputFile = inputFileRef.current;
-    // inputFile.addEventListener("change", handleFileChange);
-
-    // return () => {
-    //   inputFile.removeEventListener("change", handleFileChange);
-    // };
-  }, []);
-
   return (
     <div className="add-uni">
       <Aviso
@@ -115,18 +86,34 @@ function AddUnidade() {
         </div>
 
         <div className="adicionar">
-        <div className='imagem'>
-            <label className="picture" htmlFor="picture__input" tabIndex="0">
-              <span className="picture__image" ref={pictureImageRef}></span> 
+        
+           {/* <div className="imagem">
+            <label className="picture" htmlFor="input-imagem" tabIndex="0">
+              {pictureImageTxt}
             </label>
             <input
-              id="picture__input"  
+              id="input-imagem"
               type="file"
               onChange={alterarImagem}
-              style={{ display: 'none' }}
-              accept="images/*"  
+              style={{ display: "none" }}
+              accept="image/*"
+            />
+            </div>  */}
+
+<div className="imagem">
+            <label className="picture" htmlFor="input-imagem" tabIndex="0">
+              {/* <span className="picture__image" ref={pictureImageRef}></span> */}
+              {foto ? <img src={foto} alt="Pré-visualização da imagem" /> : pictureImageTxt}
+             </label>
+            <input
+              id="input-imagem"
+              type="file"
+              accept="image/*"
+              onChange={alterarImagem}
+              style={{ display: "none"}}
             />
           </div>
+
 
           <div className="interativo">
             <div className="inputs">
