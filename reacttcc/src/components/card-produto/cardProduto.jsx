@@ -6,7 +6,7 @@ function CardProduto({id,foto,nomeproduto,categoria,descricao,precoKg,abrir}) {
   
 
   return (
-    <div onClick={()=>abrir(id,foto,nomeproduto,categoria,descricao,precoKg)} href="" className="card-produto">
+    <div onClick={()=>abrir(id,foto,nomeproduto,categoria,descricao,precoKg, abrir)} href="" className="card-produto">
       <span className="card-numero">#{id}</span>
       <div className="card-imagem">
         <img className="imagem" src={Buffer.from(foto.data).toString()}/>
