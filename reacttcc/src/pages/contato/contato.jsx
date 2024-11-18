@@ -18,6 +18,7 @@ function Contato() {
   useEffect(() => {
     pictureImageRef.current.innerHTML = pictureImageTxt;
 
+    const url = 'http://4.172.297.208:5025/contato';
     const handleFileChange = (e) => {
       const file = e.target.files[0];
       if (file) {
