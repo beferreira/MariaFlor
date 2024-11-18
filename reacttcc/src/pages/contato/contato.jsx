@@ -2,6 +2,8 @@ import './contato.scss';
 import Cabecalho from '../../components/cabecalho/cabecalho.jsx';
 import Rodape from '../../components/rodape/rodape.jsx';
 import { useState, useEffect, useRef } from 'react';
+import { Navigate, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Contato() {
   const [nome, setNome] = useState('');
@@ -9,11 +11,44 @@ function Contato() {
   const [telefone, setTelefone] = useState('');
   const [cep, setCep] = useState('');
   const [descricao, setDescricao] = useState('');
-  const [politica, setPolitica] = useState(false);
+  // const [politica, setPolitica] = useState(false);
 
   const inputFileRef = useRef(null);
   const pictureImageRef = useRef(null);
   const pictureImageTxt = "Buscar imagem no dispositivo";
+
+    const [mensagemAviso, setmensagemAviso] = useState("")
+    const [avisoTipo, setAvisoTipo] = useState("")
+
+
+
+  async function enviar(e){
+    e.preventDefault();
+    
+    const formData = {
+      nome : nome ,
+      email : email,
+      telefone : telefone,
+      cep: cep,
+      descricao : descricao,
+
+    };
+    
+    const url = "http://4.172.297.208:5025/cliente/";
+    
+    try {
+      await axios.post(url, formData);
+
+      setmensagemAviso("Produto adicionado com sucesso!");
+      setAvisoTipo("success");
+      setTimeout(() => Navigate("/produtos"), 3000);
+    } catch (error) {
+      setmensagemAviso("Erro ao adicionar produto");
+      setAvisoTipo("error");
+    }
+  }
+
+
 
   useEffect(() => {
     pictureImageRef.current.innerHTML = pictureImageTxt;
@@ -55,14 +90,14 @@ function Contato() {
     document.body.removeChild(link);
   };
 
-  const VerificacaoCep = () =>{
-    if(cep.length == 8){
-      alert('CEP Valido!');
-    }
-    else{
-      alert('CEP Inválido!');
-    }
-  }
+  // const VerificacaoCep = () =>{
+  //   if(cep.length == 8){
+  //     alert('CEP Valido!');
+  //   }
+  //   else{
+  //     alert('CEP Inválido!');
+  //   }
+  // }
 
   return (
     <div className="pagina-contato">
@@ -103,7 +138,7 @@ function Contato() {
           </div>
         </div>
 
-        <button>Enviar</button>
+        <button onClick={enviar}>Enviar</button>
       </div>
 
       <Rodape />
