@@ -4,6 +4,8 @@ import './cabecalho.scss';
 function Cabecalho() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const name = localStorage.getItem("NOME")
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -24,7 +26,7 @@ function Cabecalho() {
           <a href="/unidades">Unidades</a>
           <a href="/contato">Contato</a>
         </nav>
-        <a className='botao-adm'><img src="./images/user.png" alt="ADM" width={34.5}/> ADM</a>
+        <a className='botao-adm'><img src="./images/user.png" alt="ADM" width={34.5}/> {name}</a>
       </header>
     </div>
   );

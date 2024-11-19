@@ -31,7 +31,7 @@ function Inicio() {
   // }
 
   async function filtrarOrdemAlfabetica(){
-    const url  = `http//4.172.297.208:5025/produto/ordemAlfabetica`
+    const url  = `http//localhost:5025/produto/ordemAlfabetica`
     let resp = await axios.get(url)
 
     setListaFiltros(resp.data)
@@ -39,7 +39,7 @@ function Inicio() {
   }
 
   async function filtrarId(){
-    const url = `http//4.172.297.208:5025/produto/id`
+    const url = `http//localhost:5025/produto/id`
     let resp  = await axios.get(url)
 
     setListaFiltros(resp.data)
@@ -48,7 +48,7 @@ function Inicio() {
 
   async function filtrarDoces(){
 
-    const url = `http//4.172.297.208:5025/produto/doce`;
+    const url = `http//localhost:5025/produto/doce`;
     let resp = await axios.get(url);
 
     setListaFiltros(resp.data)
@@ -56,31 +56,32 @@ function Inicio() {
 
   async function filtrarSalgados(){
 
-    const url = `http//4.172.297.208:5025/produto/salgado`
+    const url = `http//localhost:5025/produto/salgado`
     let resp = await axios.get(url)
 
     setListaFiltros(resp.data)
   }
 
   async function filtrarDiet(){
-    const url = `http//4.172.297.208:5025/produto/diet`
+    const url = `http//localhost:5025/produto/diet`
     let resp = await axios.get(url)
 
     setListaFiltros(resp.data)
   }
 
   async function filtrarZeroAcucar(){
-    const url = `http//4.172.297.208:5025/produto/zeroAcucar`
+    const url = `http//localhost:5025/produto/zeroAcucar`
     let resp = await axios.get(url)
 
     setListaFiltros(resp.data)
 
   }
 
+
   useEffect(() => {
     const cardsProdutos = async () => {
       
-      const url = 'http://4.172.297.208:5025/produto';
+      const url = 'http://localhost:5025/produto';
       const response = await axios.get(url);
       console.log(response.data);
       setListaProdutos(response.data);

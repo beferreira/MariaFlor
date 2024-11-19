@@ -32,9 +32,9 @@ export default function Navegacao(){
               <Route path='/cardProduto' element={<CardProduto/>} />
               <Route path='/cardEncomenda' element={<CardEncomenda/>} />
               <Route path='/paginaProduto' element={<PaginaProduto/>} />
-              <Route path='/' element={<Inicio/>} />
+              <Route path='/inicio' element={<Inicio/>} />
               <Route path='/contato' element={<Contato/>} />
-              <Route path='/login' element={<Login  />} />
+              <Route path='/' element={<Login  />} />
               <Route path='/unidades' element={<Unidades/>} />
               <Route path='/addunidade' element={<AddUnidade  />} />
               <Route path='/encomendas' element={<Encomendas/>} />
