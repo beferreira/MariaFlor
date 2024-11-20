@@ -77,17 +77,17 @@ function Inicio() {
 
   }
 
-
   useEffect(() => {
-    const cardsProdutos = async () => {
-      
-      const url = 'http://localhost:5025/produto';
-      const response = await axios.get(url);
-      console.log(response.data);
-      setListaProdutos(response.data);
-    };
+    
+      const cardsProdutos = async () => {
+        
+        const url = 'http://localhost:5025/produto';
+        const response = await axios.get(url);
+        console.log(response.data);
+        setListaProdutos(response.data);
+      };
 
-    cardsProdutos();
+    
     
   }, []);
 

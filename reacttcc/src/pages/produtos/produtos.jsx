@@ -8,100 +8,55 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Produtos() {
+  
+  
+  // este mapea na pagina
   const [listaProdutos, setListaProdutos] = useState([]);
+
   const [ordenar, setOrdernar] = useState("todas");
-  const [Filtrados, setFiltrados] = useState([]);
 
-  const { id } = useParams();
-
-  // useEffect(() => {
-  //   const cardsProduto = async () => {
-  //     const url = `http://localhost:5025/produto-filtro/${ordenar}`;
-  //     const response = await axios.get(url);
-  //     setFiltrados(response.data);
-  //   };
-
-  //   const intervalId = setInterval(cardsProduto, 10);
-  //   return () => clearInterval(intervalId);
-  // }, [ordenar]);
-
+  // ao clicar no card ele expadi na tela e mostra as informações
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
-  const [listaFiltros, setListaFiltros] = useState([]);
   
-  function abrir(id_produto, foto, nomeproduto, descricao, precoKg) {
-    setProdutoSelecionado({ id_produto, foto, nomeproduto, descricao, precoKg });
-  }
   
-  async function Excluir() {
-    const url = `http://localhost:5025/produto/:${id}`;
-    let resp = await axios.delete(url);
-    alert(`Id: ${id} deletado da lista de produtos.`);
-  }
+  const { id } = useParams();
   
-  // async function filtrarTodasCategoria(){
-  //   const url = `http//localhost:5025/produto`;
-  //   let resp = await axios.get(url);
-  //   setListaFiltros(resp.data)
-  // }
-
-  async function filtrarOrdemAlfabetica(){
-    const url  = `http//localhost:5025/produto/ordemAlfabetica`
-    let resp = await axios.get(url)
-
-    setListaFiltros(resp.data)
-  }
-
-  async function filtrarId(){
-    const url = `http//localhost:5025/produto/id`
-    let resp  = await axios.get(url)
-
-    setListaFiltros(resp.data)
-  } 
-
-  async function filtrarDoces(){
-
-    const url = `http//localhost:5025/produto/doce`;
-    let resp = await axios.get(url);
-
-    setListaFiltros(resp.data)
-  }
-
-  async function filtrarSalgados(){
-
-    const url = `http//localhost:5025/produto/salgado`
-    let resp = await axios.get(url)
-
-    setListaFiltros(resp.data)
-  }
-
-  async function filtrarDiet(){
-    const url = `http//localhost:5025/produto/diet`
-    let resp = await axios.get(url)
-
-    setListaFiltros(resp.data)
-  }
-
-  async function filtrarZeroAcucar(){
-    const url = `http//localhost:5025/produto/zeroAcucar`
-    let resp = await axios.get(url)
-
-    setListaFiltros(resp.data)
-  }
-
-    
-    useEffect(() => {
-      const cardsProdutos = async () => {
-        
-        const url = 'http://localhost:5025/produto';
-        const response = await axios.get(url);
-        console.log(response.data);
-        setListaProdutos(response.data);
-      };
-  
-      cardsProdutos();
+  // useEffect(() => {
+    //   const cardsProduto = async () => {
+      //     const url = `http://localhost:5025/produto-filtro/${ordenar}`;
+      //     const response = await axios.get(url);
+      //     setFiltr(response.data);
+      //   };
       
-    }, []);
+      //   const intervalId = setInterval(cardsProduto, 10);
+      //   return () => clearInterval(intervalId);
+      // }, [ordenar]);
+      
+      function abrir(id_produto, foto, nomeproduto, descricao, precoKg) {
+        setProdutoSelecionado({ id_produto, foto, nomeproduto, descricao, precoKg });
+      }
+      
+      async function Excluir() {
+        const url = `http://localhost:5025/produto/:${id}`;
+        let resp = await axios.delete(url);
+        alert(`Id: ${id} deletado da lista de produtos.`);
+      }
 
+
+
+   useEffect(() => {
+     const cardsProdutos = async () => { 
+       const url = 'http://localhost:5025/produto';
+       let resp = await axios.get(url);
+       console.log(resp.data);
+       setListaProdutos(resp.data);
+    };  
+    
+    
+     }, []);
+
+
+  
 
   return (
     <div className="produtos">
@@ -125,11 +80,11 @@ function Produtos() {
           />
         </div>
 
-        <div className="faixa-prod">
+        {/* <div className="faixa-prod">
           <p>Ordernar por</p>
 
           <select name="ordenar">
-            <option value="todas" /*onClick={filtrarTodasCategoria}*/>Todas as categorias</option>
+            <option value="todas" onClick={filtrarTodasCategoria}>Todas as categorias</option>
             <option value="doces" onClick={filtrarDoces}>Doces</option>
             <option value="salgados" onClick={filtrarSalgados}>Salgados</option>
             <option value="zeroacucar" onClick={filtrarZeroAcucar}>Zero Açucar</option>
@@ -137,7 +92,7 @@ function Produtos() {
             <option value="ordemalfabetica" onClick={filtrarOrdemAlfabetica}>Ordem Alfabética A-Z</option>
             <option value="ordemid" onClick={filtrarId}>Número do ID</option>
           </select>
-        </div>
+        </div> */}
 
         {produtoSelecionado && (
           <PaginaProduto
@@ -157,6 +112,8 @@ function Produtos() {
               <h2>Adicionar Produto</h2>
             </a>
           </div>
+
+        
 
           {listaProdutos.map((p) => (
             <CardProduto

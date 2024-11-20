@@ -20,7 +20,8 @@ function Login() {
 
     if (resp.data.error != undefined) {
       alert(resp.data.error);
-    } else {
+    } 
+    else {
       localStorage.setItem("ADM", resp.data.token);
       localStorage.setItem("NOME", nome)
       navigate("/inicio");

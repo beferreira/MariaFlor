@@ -11,7 +11,7 @@ function AddProduto() {
 
   const [nomeproduto, setNomeProduto] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [zeroacucar, setZeroacucar] = useState(false);
+  const [zeroAcucar, setZeroAcucar] = useState(false);
   const [diet, setDiet] = useState(false);
   const [categoria, setCategoria] = useState("");
   const [precoKg, setPrecoKg] = useState("");
@@ -34,7 +34,7 @@ function AddProduto() {
       nomeproduto: nomeproduto,
       categoria: categoria,
       descricao: descricao,
-      zeroacucar: zeroacucar,
+      zeroAcucar: zeroAcucar,
       diet: diet,
       precoKg: precoKg
     };
@@ -147,8 +147,8 @@ function AddProduto() {
                     <label>É Zero Açúcar?</label>
                     <input
                       type="checkbox"
-                      checked={zeroacucar}
-                      onChange={(e) => setZeroacucar(e.target.checked)}
+                      checked={zeroAcucar}
+                      onChange={(e) => setZeroAcucar(e.target.checked)}
                     />
                   </div>
 

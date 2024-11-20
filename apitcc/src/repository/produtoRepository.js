@@ -21,7 +21,7 @@ export async function consultarProduto(){
     nomeproduto           nomeproduto,
     categoria             categoria,
     descricao             descricao, 
-    zeroacucar            zeroacucar,
+    zeroAcucar            zeroAcucar,
     diet,                 diet,
     precoKg               precoKg
     from tb_produtos;
@@ -41,7 +41,7 @@ export async function alterarProduto(produto, idProduto) {
         nomeproduto = ?,
         categoria = ?,
         descricao = ?,
-        zeroacucar = ?,
+        zeroAcucar = ?,
         diet = ?,
         precoKg = ?
     where id_produto = ?;
@@ -75,9 +75,9 @@ export async function deletarProduto(id) {
 
 export async function filtrarProdutoOrdemAlfabetica(){
     const comando = `
-    select *
-    from tb_produtos
-    order by nomeproduto asc;
+    SELECT *
+    FROM tb_produtos
+    ORDER BY nomeproduto ASC;
     `
     let info = await con.query(comando)
     let resposta = info[0]
@@ -90,6 +90,7 @@ export async function filtrarProdutoPorId(id) {
     const comando = `
     SELECT id_produto
     FROM tb_produtos
+    ORDER BY id_produto ASC;
     `
     let info = await con.query(comando, [id]);
     
@@ -100,10 +101,9 @@ export async function filtrarProdutoPorId(id) {
 
 export async function filtrarProdutoDoce(categoria) {
     const comando = `
-    select *
-    from tb_produtos
-    where categoria = 'doces'
-    order by nomeproduto asc;
+    SELECT nomeproduto
+    FROM tb_produtos
+    WHERE categoria like '%doce';
     `
     let info = await con.query(comando, [categoria]);
 
@@ -115,10 +115,9 @@ export async function filtrarProdutoDoce(categoria) {
 
 export async function filtrarProdutoSalgados() {
     const comando = `
-    select *
-    from tb_produtos
-    where categoria = 'salgados'
-    order by nomeproduto asc;
+    SELECT nomeproduto
+    FROM tb_produtos
+    WHERE categoria like '%salgado';
     `
     let info = await con.query(comando)
     let resposta = info[0]
@@ -128,10 +127,9 @@ export async function filtrarProdutoSalgados() {
 
 export async function filtrarProdutoDiet() {
     const comando = `
-    select diet
-    from tb_produtos
-    group by diet
-    order by diet desc;
+    SELECT diet
+    FROM tb_produtos 
+    where diet;
     `
     let info = await con.query(comando)
     let resposta = info[0]
@@ -141,10 +139,9 @@ export async function filtrarProdutoDiet() {
 
 export async function filtrarProdutoZeroAcucar() {
     const comando = `
-    select zeroAcucar
-    from tb_produtos
-    group by zeroAcucar
-    order by zeroAcucar DESC;
+    SELECT zeroAcucar
+    FROM tb_produtos
+    where zeroAcucar;
     `
     let info = await con.query(comando)
     let resposta = info[0]

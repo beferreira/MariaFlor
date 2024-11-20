@@ -20,7 +20,7 @@ function Cabecalho() {
           <span className="bar"></span>
         </button>
         <nav className={isMenuOpen ? 'active' : ''}>
-          <a href="/">Inicio</a>
+          <a href="/inicio">Inicio</a>
           <a href="/produtos">Produtos</a>
           <a href="/encomendas">Encomendas</a>
           <a href="/unidades">Unidades</a>
