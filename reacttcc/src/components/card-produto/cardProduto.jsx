@@ -1,9 +1,8 @@
 import './cardProduto.scss';
 
 import {Buffer} from "buffer"
-import { useEffect } from 'react';
 
-function CardProduto({id_produto,fotoProduto,nomeproduto}) {
+function CardProduto({id_produto,fotoProduto,nomeproduto,descricao,categoria,precoKg}) {
   
 
   return (
