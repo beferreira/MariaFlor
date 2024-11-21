@@ -17,28 +17,28 @@ function Doces() {
   }
 
   async function filtrarOrdemAlfabetica(){
-    const url  = `http//localhost:5025/produto/ordemAlfabetica`
+    const url  = `http//4.172.297.208:5025/produto/ordemAlfabetica`
     let resp = await axios.get(url)
 
     setListaFiltros(resp.data)
   }
 
   async function filtrarId(){
-    const url = `http//localhost:5025//produto/id`
+    const url = `http//4.172.297.208:5025//produto/id`
     let resp  = await axios.get(url)
 
     setListaFiltros(resp.data)
   } 
 
   async function filtrarDiet(){
-    const url = `http//localhost:5025/produto/diet`
+    const url = `http//4.172.297.208:5025/produto/diet`
     let resp = await axios.get(url)
 
     setListaFiltros(resp.data)
   }
 
   async function filtrarZeroAcucar(){
-    const url = `http//localhost:5025/produto/zeroAcucar`
+    const url = `http//4.172.297.208:5025/produto/zeroAcucar`
     let resp = await axios.get(url)
 
     setListaFiltros(resp.data)
