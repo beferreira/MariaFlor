@@ -100,7 +100,7 @@ function AddUnidade() {
             />
             </div>  */}
 
-<div className="imagem">
+          <div className="imagem">
             <label className="picture" htmlFor="input-imagem" tabIndex="0">
               {/* <span className="picture__image" ref={pictureImageRef}></span> */}
               {foto ? <img src={foto} alt="Pré-visualização da imagem" /> : pictureImageTxt}

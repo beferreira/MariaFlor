@@ -2,10 +2,10 @@ import con from './connection.js'
 
 export async function inserirProduto(produto) {
     const comando = `
-    insert into tb_produtos(foto, nomeproduto, categoria, descricao, zeroAcucar, diet, precoKg)
+    insert into tb_produtos(fotoProduto, nomeproduto, categoria, descricao, zeroAcucar, diet, precoKg)
 	values (?, ?, ?, ?, ?, ?, ?);
    `
-   let resposta = await con.query(comando, [produto.foto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroAcucar, produto.diet, produto.precoKg ]);
+   let resposta = await con.query(comando, [produto.fotoProduto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroAcucar, produto.diet, produto.precoKg ]);
 
    let info = resposta[0]
    let id = info.insertId
@@ -17,7 +17,7 @@ export async function consultarProduto(){
     const comando = `
     
     select id_produto,
-    foto                  foto,
+    fotoProduto           fotoProduto,
     nomeproduto           nomeproduto,
     categoria             categoria,
     descricao             descricao, 
@@ -37,7 +37,7 @@ export async function consultarProduto(){
 export async function alterarProduto(produto, idProduto) {
    const comando = `
     update tb_produtos
-    set foto = ?,
+    set fotoProduto = ?,
         nomeproduto = ?,
         categoria = ?,
         descricao = ?,
@@ -47,7 +47,7 @@ export async function alterarProduto(produto, idProduto) {
     where id_produto = ?;
     ` 
 
-    let resposta = await con.query(comando, [produto.foto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroAcucar, produto.diet, produto.precoKg, idProduto]);
+    let resposta = await con.query(comando, [produto.fotoProduto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroAcucar, produto.diet, produto.precoKg, idProduto]);
 
     let info = resposta[0]
 

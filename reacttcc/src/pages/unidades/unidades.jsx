@@ -2,9 +2,9 @@ import './unidades.scss';
 import Cabecalho from '../../components/cabecalho/cabecalho.jsx';
 import Rodape from '../../components/rodape/rodape.jsx';
 import CardUnidade from '../../components/card-unidade/cardUnidade.jsx';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Buffer} from "buffer"
+import { Buffer } from "buffer"
 
 
 function Unidades() {
@@ -44,12 +44,12 @@ function Unidades() {
         <div className='cards'>
         {ListaUnidade.map(u => <CardUnidade
             key={u.id_unidade}
+            id={u.id_unidade}
             foto={u.foto}
             endereco={u.endereco}
             abre={u.abre}
             fecha={u.fecha}
             url={u.url_maps}
-            id={u.id_unidade}
             />)}
         </div>
     </div>

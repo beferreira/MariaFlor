@@ -6,15 +6,13 @@ import PaginaProduto from "../../components/pagina-produto/paginaProduto.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Buffer } from "buffer"
 
 function Produtos() {
   
   
-  // este mapea na pagina
-  const [listaProdutos, setListaProdutos] = useState([]);
-
   const [ordenar, setOrdernar] = useState("todas");
-
+  
   // ao clicar no card ele expadi na tela e mostra as informações
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
   
@@ -32,28 +30,30 @@ function Produtos() {
       //   return () => clearInterval(intervalId);
       // }, [ordenar]);
       
-      function abrir(id_produto, foto, nomeproduto, descricao, precoKg) {
-        setProdutoSelecionado({ id_produto, foto, nomeproduto, descricao, precoKg });
-      }
+      
       
       async function Excluir() {
         const url = `http://localhost:5025/produto/:${id}`;
         let resp = await axios.delete(url);
         alert(`Id: ${id} deletado da lista de produtos.`);
       }
-
-
-
-   useEffect(() => {
-     const cardsProdutos = async () => { 
-       const url = 'http://localhost:5025/produto';
-       let resp = await axios.get(url);
-       console.log(resp.data);
-       setListaProdutos(resp.data);
-    };  
+      
+      
+      // este mapea na pagina
+      const [ListaProdutos, setListaProdutos] = useState([]);
+      
+      useEffect(() => {
+        const cardsProdutos = async () => {
+          
+          const url = 'http://localhost:5025/produto';
+          const response = await axios.get(url);
+          
+          setListaProdutos(response.data);
+        };
     
-    
-     }, []);
+        cardsProdutos();
+        
+      }, []);
 
 
   
@@ -80,21 +80,7 @@ function Produtos() {
           />
         </div>
 
-        {/* <div className="faixa-prod">
-          <p>Ordernar por</p>
-
-          <select name="ordenar">
-            <option value="todas" onClick={filtrarTodasCategoria}>Todas as categorias</option>
-            <option value="doces" onClick={filtrarDoces}>Doces</option>
-            <option value="salgados" onClick={filtrarSalgados}>Salgados</option>
-            <option value="zeroacucar" onClick={filtrarZeroAcucar}>Zero Açucar</option>
-            <option value="diet" onClick={filtrarDiet}>Diet</option>
-            <option value="ordemalfabetica" onClick={filtrarOrdemAlfabetica}>Ordem Alfabética A-Z</option>
-            <option value="ordemid" onClick={filtrarId}>Número do ID</option>
-          </select>
-        </div> */}
-
-        {produtoSelecionado && (
+        {/* {produtoSelecionado && (
           <PaginaProduto
             id={produtoSelecionado.id_produto}
             nomeproduto={produtoSelecionado.nomeproduto}
@@ -102,7 +88,9 @@ function Produtos() {
             foto={produtoSelecionado.foto}
             precoKg={produtoSelecionado.precoKg}
           />
-        )}
+        )} */}
+
+
 
         <div className="cards">
           <div className="add-card">
@@ -115,20 +103,19 @@ function Produtos() {
 
         
 
-          {listaProdutos.map((p) => (
-            <CardProduto
+          {ListaProdutos.map(p => <CardProduto
               key={p.id_produto}
               id={p.id_produto}
-              foto={p.foto}
+              foto={p.fotoPro}
               nomeproduto={p.nomeproduto}
               descricao={p.descricao}
               precoKg={p.precoKg}
-              abrir={abrir}
-            />
-          ))}
+            />)}
         </div>
       </div>
+
       <Rodape />
+
     </div>
   );
 }

@@ -10,7 +10,7 @@ function CardUnidade({foto,endereco,abre,fecha,url, id}) {
     async function apagar(){
         
       const url = `http://localhost:5025/unidade/${id}`;
-      const response = await axios.delete(url);
+      await axios.delete(url);
 
     };
 

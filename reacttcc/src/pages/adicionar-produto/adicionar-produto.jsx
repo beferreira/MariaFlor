@@ -18,7 +18,7 @@ function AddProduto() {
 
   const [mensagemAviso, setmensagemAviso] = useState("");
   const [AvisoTipo, setAvisoTipo] = useState("");
-  const [foto, setFoto] = useState();
+  const [fotoProduto, setFotoProduto] = useState();
 
   // const inputFileRef = useRef(null);
   // const pictureImageRef = useRef(null);
@@ -30,7 +30,7 @@ function AddProduto() {
 
   async function salvar() {
     const formData = {
-      foto: foto,
+      fotoProduto: fotoProduto,
       nomeproduto: nomeproduto,
       categoria: categoria,
       descricao: descricao,
@@ -59,7 +59,7 @@ function AddProduto() {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setFoto(reader.result);
+        setFotoProduto(reader.result);
       };
 
       reader.readAsDataURL(file);
@@ -102,7 +102,7 @@ function AddProduto() {
             <div className="imagem">
             <label className="picture" htmlFor="input-imagem" tabIndex="0">
               {/* <span className="picture__image" ref={pictureImageRef}></span> */}
-              {foto ? <img src={foto} alt="Pré-visualização da imagem" /> : pictureImageTxt}
+              {fotoProduto ? <img src={fotoProduto} alt="Pré-visualização da imagem" /> : pictureImageTxt}
              </label>
             <input
               id="input-imagem"
