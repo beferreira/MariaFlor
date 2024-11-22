@@ -9,12 +9,6 @@ import { Router } from "express"
 const endpoints = Router();
 
 
-
-
-
-
-
-
 endpoints.post('/cliente/',  async (req, resp) =>{
     try{
         let cliente = req.body
@@ -40,10 +34,6 @@ endpoints.post('/cliente/',  async (req, resp) =>{
 
 
 
-
-
-
-
 endpoints.get('/cliente', autenticar, async (req, resp) =>{
     try{
         let cliente = await consultarClienteService();
@@ -55,9 +45,6 @@ endpoints.get('/cliente', autenticar, async (req, resp) =>{
         })
     }
 })
-
-
-
 
 
 
@@ -80,9 +67,6 @@ endpoints.put('/cliente/:id', autenticar, async (req, resp)=> {
 
 
 
-
-
-
 endpoints.delete('/cliente/:id', autenticar, async (req, resp) => {
     try{
         let id = req.params.id;
@@ -97,11 +81,6 @@ endpoints.delete('/cliente/:id', autenticar, async (req, resp) => {
         })
     }
 })
-
-
-
-
-
 
 
 export default endpoints;
