@@ -44,7 +44,7 @@ function Salgados() {
     
     const cardsProdutosSalgados = async () => {
       
-      const url = 'http://localhost:5025/produto/salgado';
+      const url = 'http://4.172.207.208:5025/produto/salgado';
       const response = await axios.get(url);
       console.log(response.data);
       setListaProdutosSalgado(response.data);

@@ -34,7 +34,7 @@ function Contato() {
 
     };
     
-    const url = "http://localhost:5025/cliente/";
+    const url = "http://4.172.207.208:5025/cliente/";
     
     try {
       await axios.post(url, formData);
@@ -53,7 +53,7 @@ function Contato() {
   useEffect(() => {
     pictureImageRef.current.innerHTML = pictureImageTxt;
 
-    const url = 'http://localhost:5025/contato';
+    const url = 'http://4.172.207.208:5025/contato';
     const handleFileChange = (e) => {
       const file = e.target.files[0];
       if (file) {

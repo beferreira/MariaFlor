@@ -18,7 +18,7 @@ function Produtos() {
 
   // useEffect(() => {
   //   const cardsProduto = async () => {
-  //     const url = `http://localhost:5025/produto-filtro/${ordenar}`;
+  //     const url = `http://4.172.207.208:5025/produto-filtro/${ordenar}`;
   //     const response = await axios.get(url);
   //     setFiltr(response.data);
   //   };
@@ -29,7 +29,7 @@ function Produtos() {
 
   async function Excluir() {
     try {
-      const url = `http://localhost:5025/produto/${id}`;
+      const url = `http://4.172.207.208:5025/produto/${id}`;
       await axios.delete(url);
       setId("");
       alert('Deletado com sucesso')
@@ -43,7 +43,7 @@ function Produtos() {
   const [ListaProdutos, setListaProdutos] = useState([]);
 
   const cardsProdutos = async () => {
-    const url = "http://localhost:5025/produto";
+    const url = "http://4.172.207.208:5025/produto";
     const response = await axios.get(url);
 
     setListaProdutos(response.data);

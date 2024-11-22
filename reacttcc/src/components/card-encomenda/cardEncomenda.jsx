@@ -7,7 +7,7 @@ function CardEncomenda({ id, status, nome, contato, data_entrega, hora_entrega, 
   const [status2, setStatus] = useState(status)
 
   const MudarStatus = async (status, id) => {
-    const url = `http://localhost:5025/editar-status/${id}`;
+    const url = `http://4.172.207.208:5025/editar-status/${id}`;
     const info = {
         "status": status
     };
