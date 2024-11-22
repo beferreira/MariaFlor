@@ -23,8 +23,8 @@ function AddEncomenda() {
       "valor": valor,
       "status": "Pendente"
     }
-                      //4.172.297.208
-    const url = 'http://4.172.297.208:5025/encomendas';
+                      //localhost
+    const url = 'http://localhost:5025/encomendas';
     let resp = await axios.post(url, paramCorpo);
     console.log(resp)
     setmensagemAviso('Encomenda adicionada com sucesso!')

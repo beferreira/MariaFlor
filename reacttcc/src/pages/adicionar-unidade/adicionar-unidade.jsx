@@ -40,11 +40,9 @@ function AddUnidade() {
       'url_maps': url_maps
     }
 
-<<<<<<< HEAD
+
     const url = 'http://localhost:5025/unidade/';
-=======
-    const url = 'http://4.172.297.208:5025/unidade';
->>>>>>> 74a5be4b48a5f8f5674d672f849842f5147e6f1b
+
 
     try {
       await axios.post(url, formData);

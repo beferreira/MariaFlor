@@ -33,16 +33,12 @@ function Produtos() {
       
       
       async function Excluir() {
-<<<<<<< HEAD
+
         const url = `http://localhost:5025/produto/${id}`;
         await axios.delete(url);
         
-        // alert(`Id: ${id} deletado da lista de produtos.`);
-=======
-        const url = `http://4.172.297.208:5025/produto/:${id}`;
-        let resp = await axios.delete(url);
-        alert(`Id: ${id} deletado da lista de produtos.`);
->>>>>>> 74a5be4b48a5f8f5674d672f849842f5147e6f1b
+        // alert(`Id: ${id} deletado da lista de produtos.`)
+
       }
       
       
@@ -52,7 +48,7 @@ function Produtos() {
       useEffect(() => {
         const cardsProdutos = async () => {
           
-          const url = 'http://4.172.297.208:5025/produto';
+          const url = 'http://localhost:5025/produto';
           const response = await axios.get(url);
           
           setListaProdutos(response.data);

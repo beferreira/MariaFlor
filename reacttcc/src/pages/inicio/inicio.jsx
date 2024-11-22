@@ -20,7 +20,7 @@ function Inicio() {
 
 
   async function filtrarOrdemAlfabetica(){
-    const url  = `http//4.172.297.208:5025/produto/ordemAlfabetica`
+    const url  = `http//localhost:5025/produto/ordemAlfabetica`
     let resp = await axios.get(url)
 
     setListaFiltros(resp.data)
