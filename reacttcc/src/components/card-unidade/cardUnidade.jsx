@@ -1,21 +1,43 @@
 import './cardUnidade.scss';
+import Aviso from "../../components/aviso/aviso.jsx";
 import axios from 'axios'
-
+import { useState } from "react";
 import {Buffer} from "buffer"
 import { useEffect } from 'react';
 
 
 function CardUnidade({foto,endereco,abre,fecha,url, id}) {
 
+  const [mensagemAviso, setmensagemAviso] = useState("");
+  const [AvisoTipo, setAvisoTipo] = useState("");
+
+  const FecharAviso = () => {
+    setmensagemAviso("");
+  };
+
     async function apagar(){
+       
+      try {
+        const url = `http://localhost:5025/unidade/${id}`;
+        await axios.delete(url);
         
-      const url = `http://localhost:5025/unidade/${id}`;
-      await axios.delete(url);
+
+
+      } catch (error) {
+        alert("nao foi");
+      }
 
     };
 
   return (
     <div className="card-unidade">
+
+      <Aviso
+        message={mensagemAviso}
+        onClose={FecharAviso}
+        duration={3000}
+        type={AvisoTipo}
+      />
         
           <img className="imagem" src={Buffer.from(foto.data).toString()} alt="" width={200} height={200}/>
 

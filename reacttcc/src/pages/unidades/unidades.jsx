@@ -11,14 +11,19 @@ function Unidades() {
   
   const [ListaUnidade, setListaUnidade] = useState([])
   
+
+
+  const cardsUnidades = async () => {
+    
+    const url = 'http://localhost:5025/unidade';
+    const response = await axios.get(url);
+    console.log(response.data);
+    setListaUnidade(response.data);
+  };
+
+  
+
   useEffect(() => {
-    const cardsUnidades = async () => {
-      
-      const url = 'http://localhost:5025/unidade';
-      const response = await axios.get(url);
-      console.log(response.data);
-      setListaUnidade(response.data);
-    };
 
     cardsUnidades();
     

@@ -9,6 +9,10 @@ import axios from 'axios';
 
 
 function Inicio() {
+
+  
+
+
   const [produtoSelecionado, setProdutoSelecionado] = useState(null)
   const [listaFiltros, setListaFiltros] = useState([]);
   
@@ -131,13 +135,13 @@ function Inicio() {
 
           {listaProdutos.map(p => 
             <CardProduto
-              key={p.id_produto}
-              id={p.id_produto}
-              foto={p.foto}
-              nomeproduto={p.nomeproduto}
-              descricao={p.descricao}
-              precoKg={p.precoKg}
-            
+            key={p.id_produto}
+            id={p.id_produto}
+            nomeproduto={p.nomeproduto}
+            categoria={p.categoria}
+            descricao={p.descricao}
+            diet={p.diet}
+            zeroAcucar={p.zeroAcucar}
             />
           )}
         </div>

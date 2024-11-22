@@ -130,8 +130,8 @@ function AddProduto() {
                 onChange={(e) => setCategoria(e.target.value)}
               >
                 <option>Selecione a Categoria</option>
-                <option value="salgado">Salgado</option>
-                <option value="doce">Doce</option>
+                <option value="Salgado">Salgado</option>
+                <option value="Doce">Doce</option>
               </select>
 
               <textarea

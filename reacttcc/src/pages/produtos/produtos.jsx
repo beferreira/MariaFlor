@@ -6,60 +6,52 @@ import PaginaProduto from "../../components/pagina-produto/paginaProduto.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Buffer } from "buffer"
+import { Buffer } from "buffer";
 
 function Produtos() {
-  
-  
   const [ordenar, setOrdernar] = useState("todas");
-  
+
   // ao clicar no card ele expadi na tela e mostra as informações
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
-  
-  
-  const { id } = useParams();
-  
+
+  const [id, setId] = useState("");
+
   // useEffect(() => {
-    //   const cardsProduto = async () => {
-      //     const url = `http://localhost:5025/produto-filtro/${ordenar}`;
-      //     const response = await axios.get(url);
-      //     setFiltr(response.data);
-      //   };
-      
-      //   const intervalId = setInterval(cardsProduto, 10);
-      //   return () => clearInterval(intervalId);
-      // }, [ordenar]);
-      
-      
-      
-      async function Excluir() {
+  //   const cardsProduto = async () => {
+  //     const url = `http://localhost:5025/produto-filtro/${ordenar}`;
+  //     const response = await axios.get(url);
+  //     setFiltr(response.data);
+  //   };
 
-        const url = `http://localhost:5025/produto/${id}`;
-        await axios.delete(url);
-        
-        // alert(`Id: ${id} deletado da lista de produtos.`)
+  //   const intervalId = setInterval(cardsProduto, 10);
+  //   return () => clearInterval(intervalId);
+  // }, [ordenar]);
 
-      }
-      
-      
-      // este mapea na pagina
-      const [ListaProdutos, setListaProdutos] = useState([]);
-      
-      useEffect(() => {
-        const cardsProdutos = async () => {
-          
-          const url = 'http://localhost:5025/produto';
-          const response = await axios.get(url);
-          
-          setListaProdutos(response.data);
-        };
-    
-        cardsProdutos();
-        
-      }, []);
+  async function Excluir() {
+    try {
+      const url = `http://localhost:5025/produto/${id}`;
+      await axios.delete(url);
+      setId("");
+      alert('Deletado com sucesso')
+      cardsProdutos();
+    } catch (error) {
+      alert("nao foi");
+    }
+  }
 
+  // este mapea na pagina
+  const [ListaProdutos, setListaProdutos] = useState([]);
 
-  
+  const cardsProdutos = async () => {
+    const url = "http://localhost:5025/produto";
+    const response = await axios.get(url);
+
+    setListaProdutos(response.data);
+  };
+
+  useEffect(() => {
+    cardsProdutos();
+  }, []);
 
   return (
     <div className="produtos">
@@ -72,7 +64,12 @@ function Produtos() {
           <h1>Produtos</h1>
         </div>
         <div className="delete">
-          <input type="number" placeholder="ID que deseja deletar" />
+          <input
+            value={id}
+            type="number"
+            placeholder="ID que deseja deletar"
+            onChange={(e) => setId(e.target.value)}
+          />
           <img
             className="lixeira"
             src="./images/lixeira.png"
@@ -93,8 +90,6 @@ function Produtos() {
           />
         )} */}
 
-
-
         <div className="cards">
           <div className="add-card">
             <a href="/addproduto">
@@ -104,9 +99,8 @@ function Produtos() {
             </a>
           </div>
 
-        
-
-          {ListaProdutos.map(p => <CardProduto
+          {ListaProdutos.map((p) => (
+            <CardProduto
               key={p.id_produto}
               id={p.id_produto}
               foto={p.fotoPro}
@@ -116,12 +110,12 @@ function Produtos() {
               precoKg={p.precoKg}
               diet={p.diet}
               zeroAcucar={p.zeroAcucar}
-            />)}
+            />
+          ))}
         </div>
       </div>
 
       <Rodape />
-
     </div>
   );
 }
