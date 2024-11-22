@@ -15,8 +15,10 @@ import multer from 'multer';
 const upload = multer({ storage: multer.memoryStorage() }); 
 
 
-endpoints.post('/unidade',  async (req, resp) =>{
+endpoints.post('/unidade/',  async (req, resp) =>{
 
+
+    try{
         let unidade = {
             foto: req.body.foto,
             endereco: req.body.endereco,
@@ -28,6 +30,12 @@ endpoints.post('/unidade',  async (req, resp) =>{
         resp.send("foi"+id)
 
         //teste para subrr
+    }
+    catch(err){
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
 });
 
 

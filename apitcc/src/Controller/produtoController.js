@@ -136,7 +136,7 @@ endpoints.delete('/produto/:id', async (req, resp) => {
 
 // filtros do produtos 
 
-endpoints.get('/produto/ordemAlfabetica', autenticar, async (req, resp) =>{
+endpoints.get('/produto/ordemAlfabetica',  async (req, resp) =>{
     try{
         let produto = await consultarProdutoOrdemAlfabeticaService();
         resp.send(produto);
@@ -149,7 +149,7 @@ endpoints.get('/produto/ordemAlfabetica', autenticar, async (req, resp) =>{
 })
 
 // ESTOUY EM DUVIDA MANO NESSA AQUI 
-endpoints.get('/produto/id', autenticar, async (req, resp) =>{
+endpoints.get('/produto/id', async (req, resp) =>{
     try{
         let id = req.params.id
 
@@ -164,7 +164,7 @@ endpoints.get('/produto/id', autenticar, async (req, resp) =>{
 })
 
 
-endpoints.get('/produto/doce', autenticar, async (req, resp) =>{
+endpoints.get('/produto/doce', async (req, resp) =>{
     try{
         let produto = await consultarProdutoDoceService();
         resp.send(produto);
@@ -177,7 +177,7 @@ endpoints.get('/produto/doce', autenticar, async (req, resp) =>{
 })
 
 
-endpoints.get('/produto/salgado', autenticar, async (req, resp) =>{
+endpoints.get('/produto/salgado', async (req, resp) =>{
     try{
         let produto = await consultarProdutoSalgadoService();
         resp.send(produto);
@@ -190,7 +190,7 @@ endpoints.get('/produto/salgado', autenticar, async (req, resp) =>{
 })
 
 
-endpoints.get('/produto/diet', autenticar, async (req, resp) =>{
+endpoints.get('/produto/diet',  async (req, resp) =>{
     try{
         let produto = await consultarProdutoDietService();
         resp.send(produto);
@@ -203,7 +203,7 @@ endpoints.get('/produto/diet', autenticar, async (req, resp) =>{
 })
 
 
-endpoints.get('/produto/zeroAcucar', autenticar, async (req, resp) =>{
+endpoints.get('/produto/zeroAcucar', async (req, resp) =>{
     try{
         let produto = await consultarProdutoZeroAcucarService();
         resp.send(produto);

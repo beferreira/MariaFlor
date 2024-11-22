@@ -4,16 +4,17 @@ import Rodape from '../../components/rodape/rodape.jsx';
 import CardProduto from '../../components/card-produto/cardProduto.jsx';
 import PaginaProduto from '../../components/pagina-produto/paginaProduto.jsx';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import axios from "axios";
+
 
 function Salgados() {
   const [produtoSelecionado, setProdutoSelecionado] = useState(null)
-  const [produtos, setProdutos] = useState([]);
   const [listaFiltros, setListaFiltros] = useState([]);
 
-  function abrir(id, titulo, descricao, valor, img) {
-    setProdutoSelecionado({id, titulo, descricao, valor , img})
-  }
+  // function abrir(id, titulo, descricao, valor, img) {
+  //   setProdutoSelecionado({id, titulo, descricao, valor , img})
+  // }
 
   async function filtrarOrdemAlfabetica(){
     const url  = `http//localhost:5025/produto/ordemAlfabetica`
@@ -35,6 +36,24 @@ function Salgados() {
 
     setListaFiltros(resp.data)
   }
+  
+
+  const [listaProdutosSalgado, setListaProdutosSalgado] = useState([]);
+
+  useEffect(() => {
+    
+    const cardsProdutosSalgados = async () => {
+      
+      const url = 'http://localhost:5025/produto/salgado';
+      const response = await axios.get(url);
+      console.log(response.data);
+      setListaProdutosSalgado(response.data);
+    };
+
+  cardsProdutosSalgados();
+  
+}, [])
+
 
   return (
     <div className="salgados">
@@ -47,7 +66,7 @@ function Salgados() {
         <img src="./images/salgadobanner.png" alt="" />
       </div>
 
-      <div className='faixa-dois'>
+      {/* <div className='faixa-dois'>
         <p>Ordernar por</p>
 
         <select name="ordenar">
@@ -56,28 +75,31 @@ function Salgados() {
           <option value="ordemid" onClick={filtrarId}>ID</option>
           <option value="diet" onClick={filtrarDiet}>Diet</option>
         </select>
-      </div>
+      </div> */}
 
-      {produtoSelecionado && <PaginaProduto
+      {/* {produtoSelecionado && <PaginaProduto
           id={produtoSelecionado.id}
           titulo={produtoSelecionado.titulo}
           descricao={produtoSelecionado.descricao}
           img={produtoSelecionado.img}
           valor={produtoSelecionado.valor}
-        />}
+        />} */}
 
       <div className='cards'>
         <div className='add-card'>
           <a href="/addproduto"> <img src="./images/add.png" alt="" width={90}/> <h2>Adicionar Produto</h2></a>
         </div>
         
-        {produtos.map(p => <CardProduto
-            id={p.id}
-            titulo={p.titulo}
+        {listaProdutosSalgado.map(p => <CardProduto
+            key={p.id_produto}
+            id={p.id_produto}
+            nomeproduto={p.nomeproduto}
+            categoria={p.categoria}
             descricao={p.descricao}
-            img={p.img}
-            valor={p.valor}
-            abrir={abrir} />)}
+            diet={p.diet}
+            zeroAcucar={p.zeroAcucar}
+
+          />)}
 
       </div>
 

@@ -16,17 +16,7 @@ export async function inserirProduto(produto) {
 export async function consultarProduto(){
     const comando = `
     
-    select id_produto,
-    fotoProduto           fotoProduto,
-    nomeproduto           nomeproduto,
-    categoria             categoria,
-    descricao             descricao, 
-    zeroAcucar            zeroAcucar,
-    diet,                 diet,
-    precoKg               precoKg
-    from tb_produtos;
-
-
+    select * from tb_produtos; 
     `
     let info = await con.query(comando)
     let resposta = info[0]
@@ -36,15 +26,15 @@ export async function consultarProduto(){
 
 export async function alterarProduto(produto, idProduto) {
    const comando = `
-    update tb_produtos
-    set fotoProduto = ?,
+        update tb_produtos
+        set fotoProduto = ?,
         nomeproduto = ?,
         categoria = ?,
         descricao = ?,
         zeroAcucar = ?,
         diet = ?,
         precoKg = ?
-    where id_produto = ?;
+        where id_produto = ?;
     ` 
 
     let resposta = await con.query(comando, [produto.fotoProduto, produto.nomeproduto, produto.categoria, produto.descricao, produto.zeroAcucar, produto.diet, produto.precoKg, idProduto]);
@@ -101,7 +91,7 @@ export async function filtrarProdutoPorId(id) {
 
 export async function filtrarProdutoDoce(categoria) {
     const comando = `
-    SELECT nomeproduto
+    SELECT *
     FROM tb_produtos
     WHERE categoria like '%doce';
     `
@@ -115,7 +105,7 @@ export async function filtrarProdutoDoce(categoria) {
 
 export async function filtrarProdutoSalgados() {
     const comando = `
-    SELECT nomeproduto
+    SELECT *
     FROM tb_produtos
     WHERE categoria like '%salgado';
     `

@@ -1,11 +1,6 @@
 
 export function validarCamposObrigatoriosProdutos(produto){
 
-
-    if(!produto.fotoProduto){
-        throw new Error('Foto do produto obrigatório')
-
-    }
     if(!produto.nomeproduto){
         throw new Error('Nome do produto obrigatório')
 

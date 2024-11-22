@@ -99,19 +99,19 @@ function AddProduto() {
             />
             </div>  */}
 
-            <div className="imagem">
-            <label className="picture" htmlFor="input-imagem" tabIndex="0">
-              {/* <span className="picture__image" ref={pictureImageRef}></span> */}
-              {fotoProduto ? <img src={fotoProduto} alt="Pré-visualização da imagem" /> : pictureImageTxt}
-             </label>
-            <input
-              id="input-imagem"
-              type="file"
-              accept="image/*"
-              onChange={alterarImagem}
-              style={{ display: "none"}}
-            />
-          </div>
+            {/* <div className="imagem">
+              <label className="picture" htmlFor="input-imagem" tabIndex="0">
+                { <span className="picture__image" ref={pictureImageRef}></span> }
+                {fotoProduto ? <img src={fotoProduto} alt="Pré-visualização da imagem" /> : pictureImageTxt}
+              </label>
+              <input
+                id="input-imagem"
+                type="file"
+                accept="image/*"
+                onChange={alterarImagem}
+                style={{ display: "none"}}
+              />
+            </div> */}
 
 
           <div className="interativo">

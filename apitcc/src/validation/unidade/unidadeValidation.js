@@ -15,6 +15,7 @@ export  function validarCamposObrigatoriosUnidade(unidade){
     }
     if(!unidade.url_maps){
         throw new Error('Url maps obrigatório')
+        
     }
 }
  
