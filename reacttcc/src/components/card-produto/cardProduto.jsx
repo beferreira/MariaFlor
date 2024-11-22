@@ -27,8 +27,8 @@ function CardProduto({id,fotoProduto,nomeproduto,descricao,categoria,diet,zeroAc
     <br />
 
         <h4>Especificações:</h4>
-        <p>Diet : {diet}</p>
-        <p>Zero Açucar : {zeroAcucar}</p>
+        <p>Diet : {diet  ? "nao" : "sim" }</p>
+        <p>Zero Açucar : {zeroAcucar ? "nao" : "sim" }</p>
 
 
       </div>

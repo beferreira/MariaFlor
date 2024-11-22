@@ -95,10 +95,11 @@ function Doces() {
         {listaProdutosDoce.map(p => <CardProduto
             key={p.id_produto}
             id={p.id_produto}
-            foto={p.foto}
             nomeproduto={p.nomeproduto}
+            categoria={p.categoria}
             descricao={p.descricao}
-            precoKg={p.precoKg}
+            diet={p.diet}
+            zeroAcucar={p.zeroAcucar}
             
            />
            )}

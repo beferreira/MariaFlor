@@ -110,9 +110,12 @@ function Produtos() {
               key={p.id_produto}
               id={p.id_produto}
               foto={p.fotoPro}
+              categoria={p.categoria}
               nomeproduto={p.nomeproduto}
               descricao={p.descricao}
               precoKg={p.precoKg}
+              diet={p.diet}
+              zeroAcucar={p.zeroAcucar}
             />)}
         </div>
       </div>
